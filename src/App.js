@@ -5,11 +5,18 @@ import AdminLogin from './AdminLogin';
 import CheckIn from './CheckIn';
 import CheckOut from './CheckOut';
 import LandingPage from './LandingPage';
+import TechContext from './TechContext';
+import STORE from './store';
 import './App.css';
 
 function App() {
-  const [users, updateUsers] = useState([]);
-  const [inventory, updateInventory] = useState([]);
+  const [users, updateUsers] = useState(STORE.users);
+  const [inventory, updateInventory] = useState(STORE.inventory);
+
+  const contextValue = {
+    users,
+    inventory
+  }
 
   function renderRoutes() {
     return (
@@ -39,6 +46,7 @@ function App() {
   }
 
   return (
+    <TechContext.Provider value={contextValue}>
     <div className="App">
       <header className="App_header">
         <h1>
@@ -52,6 +60,7 @@ function App() {
         {renderRoutes()}
       </main>
     </div>
+    </TechContext.Provider>
   );
 }
 
