@@ -1,0 +1,11 @@
+.links {
+    padding: 10px;
+  }
+  
+  .buttonLink {
+    background-color: white;
+    padding: 5px;
+    font-size: 10pt;
+    cursor: pointer;
+    margin: 10px;
+  }
