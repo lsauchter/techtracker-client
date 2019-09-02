@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Route, Link} from 'react-router-dom';
+import AdminDashboard from './AdminDashboard';
+import AdminLogin from './AdminLogin';
+import CheckIn from './CheckIn';
+import CheckOut from './CheckOut';
+import LandingPage from './LandingPage';
 import './App.css';
 
 function App() {
@@ -39,12 +44,12 @@ function App() {
         <h1>
           <Link to="/">TechTracker</Link>
         </h1>
-        <div class="admin">
+        <div className="admin">
           <Link to="/admin/login">Admin</Link>
         </div>
       </header>
       <main className="App_main">
-        {() => renderRoutes()}
+        {renderRoutes()}
       </main>
     </div>
   );
