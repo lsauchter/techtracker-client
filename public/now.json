@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "techtracker",
+    "alias": "techtracker",
+    "routes": [
+        {
+          "src": "^/static/(.*)",
+          "dest": "/static/$1"
+        },
+        {
+          "src": ".*",
+          "dest": "/index.html"
+        }
+    ]
+  }
