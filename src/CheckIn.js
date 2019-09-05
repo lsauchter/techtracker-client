@@ -8,16 +8,17 @@ export default function CheckIn() {
     const {users, inventory, checkForm} = useContext(ContextInventory)
 
     /* setting values for the form render */
-    const [userName, updateUserName] = useState(users[0].name)
+    const [userForm, updateUserForm] = useState(users[0])
     const [userInventory, updateUserInventory] = useState(inventory)
     const [inventoryNumber, updateInventoryNumber] = useState(users[0].checkedOut)
 
     const setUser = targetName => {
-        updateUserName(targetName)
+        const user = users.find(person => person.name === targetName)
+        updateUserForm(user)
     }
 
     useEffect(() => {
-        const user = users.find(person => person.name === userName)
+        const user = users.find(person => person.id === userForm.id)
         const {checkedOut} = user
         const ids = Object.keys(checkedOut).map(Number)
         const checkedOutItems = inventory.filter(item => {
@@ -29,13 +30,12 @@ export default function CheckIn() {
         updateUserInventory([...checkedOutItems
         ])
         updateInventoryNumber(checkedOut)
-    }, [userName, users, inventory])
+    }, [userForm, users, inventory])
 
     /* storing inventory values from form */
     const [formData, setFormData] = useState({})
 
     const inventoryKey = target => {
-        console.log('checked', target.checked)
         const id = target.value
 
         if(target.checked) {
@@ -47,7 +47,6 @@ export default function CheckIn() {
             }
         }
         else{
-           console.log(formData)
            setFormData(formData => {
                delete formData[id]
                return formData
@@ -67,7 +66,7 @@ export default function CheckIn() {
 
     const checkIn = () => {
         console.log('check in')
-        checkForm(userName.id, formData, 'checkIn')
+        checkForm(userForm.id, formData, 'checkIn')
     }
 
     const contextValue = {

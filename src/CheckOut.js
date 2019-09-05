@@ -22,7 +22,6 @@ export default function CheckOut() {
 
     /* setting values from form */
     const inventoryKey = target => {
-        console.log('checked', target.checked)
         const id = target.value
 
         if(target.checked) {
@@ -34,7 +33,6 @@ export default function CheckOut() {
             }
         }
         else{
-           console.log(formData)
            setFormData(formData => {
                delete formData[id]
                return formData
@@ -50,13 +48,13 @@ export default function CheckOut() {
         })
     }
 
-    const setUser = user => {
+    const setUser = targetName => {
+        const user = users.find(person => person.name === targetName)
         updateUserForm(user)
     }
 
     /* submit form info */
     const checkOut = () => {
-        console.log('check out')
         checkForm(userForm.id, formData, 'checkOut')
     }
 
