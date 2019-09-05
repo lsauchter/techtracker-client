@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import ContextForm from './ContextForm';
 import FormFieldset from './FormFieldset';
 import './Form.css';
@@ -14,8 +14,6 @@ export default function Form() {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log('submitted')
-        console.log(e.target.computerQuantity)
     }
 
     return (

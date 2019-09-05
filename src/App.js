@@ -13,8 +13,8 @@ function App() {
   const [users, updateUsers] = useState(STORE.users);
   const [inventory, updateInventory] = useState(STORE.inventory);
 
-  const checkForm = data => {
-    const user = users.find(person => person.name === data.name)
+  const checkForm = (user, data, checkMethod) => {
+    console.log(user, data, checkMethod)
   }
 
   const contextValue = {

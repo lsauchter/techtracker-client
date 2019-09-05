@@ -5,13 +5,10 @@ import Form from './Form';
 import './CheckOut.css';
 
 export default function CheckOut() {
-    const {users, inventory} = useContext(ContextInventory)
+    const {users, inventory, checkForm} = useContext(ContextInventory)
+    
+    /* creating items for form render */
     const inventoryNumber = {}
-
-    /* storing values from form submit */
-    const [userForm, updateUserForm] = useState(users[0])
-    const [inventoryForm, updateInventoryForm] = useState({})
-    const [formData, setFormData] = useState({})
 
     inventory.forEach(item => {
         const id = item.id
@@ -19,6 +16,11 @@ export default function CheckOut() {
         inventoryNumber[id] = num;
     })
 
+    /* storing values from form submit */
+    const [userForm, updateUserForm] = useState(users[0])
+    const [formData, setFormData] = useState({})
+
+    /* setting values from form */
     const inventoryKey = target => {
         console.log('checked', target.checked)
         const id = target.value
@@ -27,7 +29,7 @@ export default function CheckOut() {
             if(!formData[id]) {
                 setFormData({
                     ...formData,
-                    [id]: ''
+                    [id]: 1
                 })
             }
         }
@@ -48,6 +50,15 @@ export default function CheckOut() {
         })
     }
 
+    const setUser = user => {
+        updateUserForm(user)
+    }
+
+    /* submit form info */
+    const checkOut = () => {
+        console.log('check out')
+        checkForm(userForm.id, formData, 'checkOut')
+    }
 
     const contextValue = {
         users,
@@ -55,8 +66,7 @@ export default function CheckOut() {
         inventoryNumber,
         inventoryKey,
         inventoryQuantity,
-        userForm,
-        inventoryForm,
+        setUser
     }
     
     return (
@@ -66,7 +76,7 @@ export default function CheckOut() {
             <button
                 type="submit"
                 form="checkForm"
-                onClick={() => {console.log('check out')}}>
+                onClick={() => {checkOut()}}>
                 Check Out
             </button>
         </ContextForm.Provider>

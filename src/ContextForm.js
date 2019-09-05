@@ -4,12 +4,9 @@ const ContextForm = React.createContext({
     users: [],
     inventory: [],
     inventoryNumber: '',
-    userForm: '',
-    inventoryForm: {},
     inventoryKey: () => {},
     inventoryQuantity: () => {},
-    setInventory: () => {},
     setUser: () => {}
 })
 
-export default ContextForm
+export default ContextForm 
