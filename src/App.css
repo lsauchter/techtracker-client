@@ -10,6 +10,7 @@
   top: 0;
   background-color: lightgrey;
   width: 100%;
+  z-index: 1;
 }
 
 .admin {

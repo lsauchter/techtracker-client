@@ -5,7 +5,7 @@ import AdminLogin from './AdminLogin';
 import CheckIn from './CheckIn';
 import CheckOut from './CheckOut';
 import LandingPage from './LandingPage';
-import TechContext from './TechContext';
+import ContextInventory from './ContextInventory';
 import STORE from './store';
 import './App.css';
 
@@ -51,7 +51,7 @@ function App() {
   }
 
   return (
-    <TechContext.Provider value={contextValue}>
+    <ContextInventory.Provider value={contextValue}>
     <div className="App">
       <header className="App_header">
         <h1>
@@ -65,7 +65,7 @@ function App() {
         {renderRoutes()}
       </main>
     </div>
-    </TechContext.Provider>
+    </ContextInventory.Provider>
   );
 }
 

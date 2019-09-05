@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import TechContext from './TechContext';
+import ContextInventory from './ContextInventory';
+import ContextForm from './ContextForm';
 import Form from './Form';
 import './CheckOut.css';
 
 export default function CheckOut() {
-    const {users, inventory} = useContext(TechContext)
+    const {users, inventory} = useContext(ContextInventory)
 
     const inventoryNumber = {}
 
@@ -14,7 +15,7 @@ export default function CheckOut() {
         inventoryNumber[id] = num;
     })
 
-    const formProps = {
+    const contextValue = {
         users,
         inventory,
         inventoryNumber,
@@ -22,9 +23,9 @@ export default function CheckOut() {
     }
     
     return (
-        <>
+        <ContextForm.Provider value={contextValue}>
             <h2>Check Out</h2>
-            <Form formProps={formProps} setUser={() => {}}/>
-        </>
+            <Form />
+        </ContextForm.Provider>
     )
 }
