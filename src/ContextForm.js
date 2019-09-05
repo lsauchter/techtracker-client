@@ -4,7 +4,11 @@ const ContextForm = React.createContext({
     users: [],
     inventory: [],
     inventoryNumber: '',
-    buttonName: '',
+    userForm: '',
+    inventoryForm: {},
+    inventoryKey: () => {},
+    inventoryQuantity: () => {},
+    setInventory: () => {},
     setUser: () => {}
 })
 

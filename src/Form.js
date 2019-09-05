@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import ContextForm from './ContextForm';
 import FormFieldset from './FormFieldset';
 import './Form.css';
 
-export default function Form(props) {
-    const {users, inventory, buttonName, setUser} = useContext(ContextForm)
+export default function Form() {
+    const {users, inventory, setUser} = useContext(ContextForm)
     const computers = inventory.filter(item => item.category === 'computer')
     const tablets = inventory.filter(item => item.category === 'tablet')
     
@@ -14,11 +14,12 @@ export default function Form(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(e.target.computer[1].value)
+        console.log('submitted')
+        console.log(e.target.computerQuantity)
     }
 
     return (
-        <form onSubmit={handleSubmit} className="checkForm">
+        <form onSubmit={handleSubmit} className="checkForm" id="checkForm">
             <label htmlFor="name">Name:</label>
             <select
                 id="name"
@@ -27,9 +28,6 @@ export default function Form(props) {
             </select>
             {(computers.length > 0) && <FormFieldset category="Computers" inventory={computers}/>}
             {(tablets.length > 0) && <FormFieldset category="Tablets" inventory={tablets}/>}
-            <button type="submit">
-                {buttonName}
-            </button>
         </form>
     )
 }

@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .App_header {
   align-items: center;
   justify-content: center;
@@ -25,4 +24,8 @@
   background-color: silver;
   padding: 20px;
   height: 100vh;
+}
+
+body {
+  background-color: silver;
 }

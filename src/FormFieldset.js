@@ -1,14 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ContextForm from './ContextForm';
 import './FormFieldset.css';
 
 export default function FormFieldset(props) {
     const {category, inventory} = props
-    const {inventoryNumber} = useContext(ContextForm)
+    const {inventoryNumber, inventoryKey, inventoryQuantity} = useContext(ContextForm)
 
     function options(quantity) {
         const optionList = quantity.map(num => {
-            return <option key={num + 'qo'}>{num}</option>
+            return <option key={num + 'qo'} value={num}>{num}</option>
         })
         return optionList
     }
@@ -25,12 +25,13 @@ export default function FormFieldset(props) {
                 <input 
                     type="checkbox"
                     name={item.category}
-                    id={item.category + item.id}
+                    id={item.id}
                     value={item.id}
+                    onChange={(e) => inventoryKey(e.target)}
                 />
                 <label
                     className="checkbox"
-                    htmlFor={item.category + item.id}
+                    htmlFor={item.id}
                 >
                     {item.name}
                     <img src={item.image} alt={"image of " + item.name}/>
@@ -38,13 +39,14 @@ export default function FormFieldset(props) {
                 <div className="quantity">
                     <label
                         className="quantityLabel" 
-                        htmlFor={'quantity' + item.id}
+                        htmlFor={'quantity ' + item.id}
                     >
                         Quantity
                     </label>
                     <select 
-                        id={'quantity' + item.id}
+                        id={'quantity ' + item.id}
                         name={item.category + 'Quantity'}
+                        onChange={(e) => inventoryQuantity(e.target.value, item.id)}
                     >
                         {options(quantity)}
                     </select>
