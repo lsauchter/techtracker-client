@@ -14,12 +14,6 @@ export default function CheckOut() {
         inventoryNumber[id] = num;
     })
 
-    console.log(inventoryNumber)
-
-    const setUser = (userName) => {
-        console.log('setUser', userName)
-    }
-
     const formProps = {
         users,
         inventory,
@@ -30,7 +24,7 @@ export default function CheckOut() {
     return (
         <>
             <h2>Check Out</h2>
-            <Form formProps={formProps} setUser={setUser} />
+            <Form formProps={formProps} setUser={() => {}}/>
         </>
     )
 }

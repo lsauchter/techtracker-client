@@ -12,6 +12,7 @@ const STORE = {
             id: 12,
             name: 'Derrick',
             checkedOut: {
+                2: 2,
             }
         }
 
@@ -29,7 +30,7 @@ const STORE = {
             id: 2,
             name: 'Red Mac',
             quantity: 6,
-            quantityAvailable: 6,
+            quantityAvailable: 4,
             category: 'computer',
             image: 'https://via.placeholder.com/75',
         },

@@ -13,9 +13,14 @@ function App() {
   const [users, updateUsers] = useState(STORE.users);
   const [inventory, updateInventory] = useState(STORE.inventory);
 
+  const checkForm = data => {
+    const user = users.find(person => person.name === data.name)
+  }
+
   const contextValue = {
     users,
-    inventory
+    inventory,
+    checkForm
   }
 
   function renderRoutes() {

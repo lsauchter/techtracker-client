@@ -28,12 +28,12 @@ export default function Form(props) {
             return <li key={item.id}>
                 <input 
                     type="checkbox"
-                    name={item.category + '[item.id][itemId]'}
-                    id={item.id}
+                    name={item.category + [item.id] + '[itemId]'}
+                    id={item.category + item.id}
                 />
                 <label
                     className="checkbox"
-                    htmlFor={item.id}
+                    htmlFor={item.category + item.id}
                 >
                     {item.name}
                     <img src={item.image} alt={"image of " + item.name}/>
@@ -41,13 +41,13 @@ export default function Form(props) {
                 <div className="quantity">
                     <label
                         className="quantityLabel" 
-                        htmlFor={item.id + 'quantity'}
+                        htmlFor={'quantity' + item.id}
                     >
                         Quantity
                     </label>
                     <select 
-                        id={item.id + 'quantity'}
-                        name={item.category + '[item.id][quantity]'}
+                        id={'quantity' + item.id}
+                        name={item.category + [item.id] + '[quantity]'}
                     >
                         {options(quantity)}
                     </select>
@@ -59,47 +59,42 @@ export default function Form(props) {
     }
 
     function computerList() {
-        if(computers) {
-            return (
-                <fieldset className="computers">
-                    <legend>Computers</legend>
-                    <ul className="flex">
-                        {items(computers)}
-                    </ul>
-                </fieldset>
-            )
-        }
-        else {
-            return (<></>)
-        }
+        return (
+            <fieldset className="computers">
+                <legend>Computers</legend>
+                <ul className="flex">
+                    {items(computers)}
+                </ul>
+            </fieldset>
+        )
     }
 
     function tabletList() {
-        if(tablets) {
-            return (<fieldset className="tablets">
-                    <legend>Tablets</legend>
-                    <ul className="flex">
-                        {items(tablets)}
-                    </ul>
-                </fieldset>
-            )
-        }
-        else {
-            return (<></>)
-        }
+        return (<fieldset className="tablets">
+                <legend>Tablets</legend>
+                <ul className="flex">
+                    {items(tablets)}
+                </ul>
+            </fieldset>
+        )
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log(e.target.quantity1.value)
     }
 
 
     return (
-        <form className="checkForm">
+        <form onSubmit={handleSubmit} className="checkForm">
             <label htmlFor="name">Name:</label>
             <select
                 id="name"
                 onChange={e => props.setUser(e.target.value)}>
                 {names}
             </select>
-            {computerList()}
-            {tabletList()}
+            {(computers.length > 0) && computerList()}
+            {(tablets.length > 0) && tabletList()}
             <button type="submit">
                 {buttonName}
             </button>
