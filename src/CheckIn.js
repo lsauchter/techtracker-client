@@ -4,7 +4,7 @@ import ContextForm from './ContextForm';
 import Form from './Form';
 import './CheckIn.css';
 
-export default function CheckIn() {
+export default function CheckIn(props) {
     const {users, inventory, checkForm} = useContext(ContextInventory)
 
     /* setting values for the form render */
@@ -65,8 +65,7 @@ export default function CheckIn() {
     /* submit form data */
 
     const checkIn = () => {
-        console.log('check in')
-        checkForm(userForm.id, formData, 'checkIn')
+        checkForm(userForm.id, formData, 'checked in')
     }
 
     const contextValue = {
@@ -75,7 +74,8 @@ export default function CheckIn() {
         inventoryNumber,
         inventoryKey,
         inventoryQuantity,
-        setUser
+        setUser,
+        history: props.history
     }
 
     return (

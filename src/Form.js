@@ -4,7 +4,7 @@ import FormFieldset from './FormFieldset';
 import './Form.css';
 
 export default function Form() {
-    const {users, inventory, setUser} = useContext(ContextForm)
+    const {users, inventory, setUser, history} = useContext(ContextForm)
     const computers = inventory.filter(item => item.category === 'computer')
     const tablets = inventory.filter(item => item.category === 'tablet')
     
@@ -14,6 +14,7 @@ export default function Form() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        history.push('/')
     }
 
     return (

@@ -12,16 +12,19 @@ import './App.css';
 function App() {
   const [users, updateUsers] = useState(STORE.users);
   const [inventory, updateInventory] = useState(STORE.inventory);
+  const [confirmation, updateConfirmation] = useState('')
 
   /* handle check in and out form submission */
   const checkForm = (user, data, checkMethod) => {
-    if(checkMethod === 'checkOut') {
+    if(checkMethod === 'checked out') {
       checkOutUser(user, data)
       checkOutInventory(data)
+      confirmationText(user, data, checkMethod)
     }
-    if(checkMethod === 'checkIn') {
+    if(checkMethod === 'checked in') {
       checkInUser(user, data)
       checkInInventory(data)
+      confirmationText(user, data, checkMethod)
     }
   }
 
@@ -75,11 +78,72 @@ function App() {
     })
   }
 
+  function confirmationText(user, data, checkMethod) {
+    const itemList = Object.keys(data).map(Number)
+    const items = itemList.map(listItem => inventory.find(item => item.id === listItem).name).join(', ')
+    const name = users.find(person => person.id === user).name
+    updateConfirmation(() => {
+    return (<p className="deleted" role='alert'>
+      {name} {checkMethod} {items}</p>
+    )}
+    )
+    setTimeout(() => {updateConfirmation('')}, 5000);
+  }
+
+  /* handle Admin actions */
+  function addUser(name) {
+    const newId = users[users.length - 1].id + 1
+    const newUser = {
+      id: newId,
+      name,
+      checkedOut: {}
+    }
+    updateUsers(() => {
+      const newUsers = [...users, newUser]
+      return newUsers
+    })
+  }
+
+  function deleteUser(name) {
+    updateUsers(() => {
+      const newUsers = users.filter(person => person.name !== name)
+      return newUsers
+    })
+  }
+
+  function addInventory(item) {
+    const newId = inventory[inventory.length - 1].id + 1
+    const {name, quantity, category, image} = item
+    const newItem = {
+      id: newId,
+      name,
+      quantity,
+      quantityAvailable: quantity,
+      category,
+      image
+    }
+    updateInventory(() => {
+      const newItems = [...inventory, newItem]
+      return newItems
+    })
+  }
+
+  function deleteInventory(name) {
+    updateInventory(() => {
+      const newItems = inventory.filter(item => item.name !== name)
+      return newItems
+    })
+  }
 
   const contextValue = {
     users,
     inventory,
-    checkForm
+    checkForm,
+    confirmation,
+    addUser,
+    deleteUser,
+    addInventory,
+    deleteInventory
   }
 
   function renderRoutes() {

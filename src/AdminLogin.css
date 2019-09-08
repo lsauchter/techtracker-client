@@ -1,0 +1,18 @@
+input {
+    padding: 5px;
+}
+
+label {
+    padding: 10px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 5px;
+}
+
+.error {
+    display: block;
+    color: red;
+}

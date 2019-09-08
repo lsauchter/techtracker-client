@@ -3,7 +3,12 @@ import React from 'react';
 const ContextInventory = React.createContext({
     users: [],
     inventory: [],
-    checkForm: () => {}
+    checkForm: () => {},
+    confirmation: '',
+    addUser: () => {},
+    deleteUser: () => {},
+    addInventory: () => {},
+    deleteInventory: () => {}
 })
 
 export default ContextInventory

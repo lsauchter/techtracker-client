@@ -4,7 +4,7 @@ import ContextForm from './ContextForm';
 import Form from './Form';
 import './CheckOut.css';
 
-export default function CheckOut() {
+export default function CheckOut(props) {
     const {users, inventory, checkForm} = useContext(ContextInventory)
     
     /* creating items for form render */
@@ -55,7 +55,7 @@ export default function CheckOut() {
 
     /* submit form info */
     const checkOut = () => {
-        checkForm(userForm.id, formData, 'checkOut')
+        checkForm(userForm.id, formData, 'checked out')
     }
 
     const contextValue = {
@@ -64,7 +64,8 @@ export default function CheckOut() {
         inventoryNumber,
         inventoryKey,
         inventoryQuantity,
-        setUser
+        setUser,
+        history: props.history
     }
     
     return (
