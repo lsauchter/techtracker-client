@@ -3,11 +3,7 @@
     padding-left: 10%;
 }
 
-.user {
-    display: inline;
-    margin-left: 10px;
+.accordion__item {
+    cursor: pointer;
 }
 
-.item {
-    margin-left: 0;
-}
