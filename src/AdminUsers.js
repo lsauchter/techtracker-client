@@ -58,7 +58,6 @@ export default function AdminUser() {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <form onSubmit={deleteUserSubmit}>
-                        <label htmlFor="user">User</label>
                         <select id="user">
                             {userNames}
                         </select>

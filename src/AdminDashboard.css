@@ -7,3 +7,14 @@
     cursor: pointer;
 }
 
+.dashboard_heading {
+    font-size: 16pt;
+    font-weight: bolder;
+    background-color: darkgrey;
+    border: 2pt solid white;
+    padding: 10px;
+}
+
+.accordion__button {
+    outline-offset: 5px;
+}

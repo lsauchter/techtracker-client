@@ -16,7 +16,7 @@ export default function AdminDashboard() {
     return (
         <Accordion allowZeroExpanded="true">
             <AccordionItem>
-                <AccordionItemHeading aria-level="2">
+                <AccordionItemHeading aria-level="2" className="dashboard_heading">
                     <AccordionItemButton>
                         Users
                     </AccordionItemButton>
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
-                <AccordionItemHeading aria-level="2">
+                <AccordionItemHeading aria-level="2" className="dashboard_heading">
                     <AccordionItemButton>
                         Inventory
                     </AccordionItemButton>
@@ -36,7 +36,7 @@ export default function AdminDashboard() {
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
-                <AccordionItemHeading aria-level="2">
+                <AccordionItemHeading aria-level="2" className="dashboard_heading">
                     <AccordionItemButton>
                         View Checked Out Items
                     </AccordionItemButton>

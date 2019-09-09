@@ -37,7 +37,7 @@ export default function AdminInventory() {
     }
 
     return (
-        <Accordion>
+        <Accordion allowZeroExpanded="true">
             <AccordionItem>
                 <AccordionItemHeading>
                     <AccordionItemButton>
