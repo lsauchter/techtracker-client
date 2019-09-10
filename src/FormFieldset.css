@@ -6,6 +6,7 @@ fieldset {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
   margin: 0;
   padding: 0;
 }
@@ -49,4 +50,14 @@ input[type="checkbox"]:checked ~ div {
 img {
   display: block;
   width: 75px;
+}
+
+@media (max-width: 500px) {
+  .flexField {
+    width: auto;
+  }
+
+  li {
+    padding: 0;
+  }
 }

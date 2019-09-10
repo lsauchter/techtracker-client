@@ -25,3 +25,9 @@ legend {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+@media (max-width: 500px) {
+  .fieldsetFlex {
+    display: block;
+  }
+}

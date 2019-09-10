@@ -76,3 +76,13 @@ button:hover, button:focus {
 .admin:hover, .admin:focus {
   background-color: #fd8204;
 }
+
+@media (max-width: 500px) {
+  .title_header {
+    width: 50%;
+  }
+
+  .title {
+    font-size: 90%;
+  }
+}
