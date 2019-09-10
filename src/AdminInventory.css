@@ -28,8 +28,12 @@ table input, table select {
     text-align: left;
 }
 
-select[id="category"], select[id="item"] {
+select[id="category"] {
     width: 100%;
+}
+
+select[id="item"] {
+    min-width: 135px;
 }
 
 @media (max-width: 500px) {
