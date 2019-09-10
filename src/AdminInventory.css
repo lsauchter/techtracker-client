@@ -17,12 +17,15 @@
 .addFormContainer {
     margin: auto;
     display: table;
-    text-align: left;
     width: auto;
 }
 
 table label {
     text-align: right;
+}
+
+table input, table select {
+    text-align: left;
 }
 
 select[id="category"], select[id="item"] {
