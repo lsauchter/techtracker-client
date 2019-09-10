@@ -85,4 +85,9 @@ button:hover, button:focus {
   .title {
     font-size: 90%;
   }
+
+  button {
+    font-size: 16pt;
+    width: 150px;
+  }
 }

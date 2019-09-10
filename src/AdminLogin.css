@@ -27,3 +27,18 @@ input[id="username"] {
     display: block;
     color: red;
 }
+
+@media (max-width: 500px) {
+    .login * {
+        font-size: 16pt;
+      }
+
+    .loginCred {
+        display: block;
+        margin-top: 20px;
+    }
+
+    input[id="username"] {
+        margin: 0 0 20px;
+    }
+}

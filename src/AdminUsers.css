@@ -19,3 +19,9 @@ input[id="addUser"] {
 select[id="user"] {
     min-width: 100px;
 }
+
+@media (max-width: 500px) {
+    .userAccordion * {
+        font-size: 16pt;
+      }
+}

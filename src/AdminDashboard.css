@@ -28,3 +28,9 @@
 .accordion__button {
     outline-offset: 5px;
 }
+
+@media (max-width: 500px) {
+    .dashboard_heading {
+        font-size: 16pt;
+      }
+}

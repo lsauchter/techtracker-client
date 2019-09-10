@@ -30,7 +30,7 @@ export default function AdminUser() {
     }
 
     return (
-        <Accordion allowZeroExpanded="true">
+        <Accordion allowZeroExpanded="true" className="userAccordion">
             <AccordionItem>
                 <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>

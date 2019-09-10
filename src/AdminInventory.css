@@ -22,3 +22,13 @@
 select[id="category"], select[id="item"] {
     min-width: 138px;
 }
+
+@media (max-width: 500px) {
+    .inventoryAccordion * {
+        font-size: 16pt;
+      }
+    
+      select[id="item"] {
+          margin-top: 15px;
+      }
+}

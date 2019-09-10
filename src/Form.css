@@ -8,7 +8,7 @@
 
 select {
   font-size: 14px;
-  width: 40px;
+  min-width: 50px;
 }
 
 .names {
@@ -29,5 +29,9 @@ legend {
 @media (max-width: 500px) {
   .fieldsetFlex {
     display: block;
+  }
+
+  .checkForm * {
+    font-size: 16pt;
   }
 }

@@ -1,3 +1,9 @@
 .checkedOutItem > p {
     margin-top: 0;
 }
+
+@media (max-width: 500px) {
+    p {
+        font-size: 16pt;
+      }
+}
