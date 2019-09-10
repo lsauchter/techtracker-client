@@ -3,10 +3,19 @@
     margin-left: 10px;
 }
 
-.accordion__heading {
+input[id="addUser"] {
+    height: 24px;
+    margin-bottom: 20px;
+}
+
+.accordion2 {
     font-size: 12pt;
-    font-weight: bolder;
-    background-color: lightgrey;
-    border: 2pt solid white;
+    font-weight: normal;
+    background-color: #EDECEB;
+    border: 2pt solid #fd8204;
     padding: 10px;
+}
+
+select[id="user"] {
+    min-width: 100px;
 }

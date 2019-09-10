@@ -1,46 +1,52 @@
 fieldset {
-    margin: 10px 0;
-  }
-  
-  .flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 5px;
-  }
-  
-  li {
-    list-style: none;
-    padding: 5px;
-  }
-  
-  input[type="checkbox"] {
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  label {
-    cursor: pointer;
-    display: block;
-  }
+    margin: 15px 0;
+}
 
-  .quantity {
-      visibility: hidden;
-  }
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
 
-    input[type="checkbox"]:checked + label {
-    border: 2pt solid red;
-  }
-  
-  input[type="checkbox"]:focus + label {
-    outline: white auto 5px;
-  }
+.flexField {
+  margin-top: 10px;
+  width: 45%;
+}
 
-  input[type="checkbox"]:checked ~ div {
-      visibility: visible !important;
-  }
+li {
+  list-style: none;
+  padding: 5px;
+}
 
-  img {
-    display: block;
-    width: 75px;
+input[type="checkbox"] {
+  opacity: 0;
+  cursor: pointer;
+}
+
+label {
+  cursor: pointer;
+  display: block;
+}
+
+.quantity {
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked + label {
+  border: 2pt solid #fd8204;
+}
+
+input[type="checkbox"]:focus + label {
+  outline: white auto 5px;
+}
+
+input[type="checkbox"]:checked ~ div {
+    visibility: visible !important;
+}
+
+img {
+  display: block;
+  width: 75px;
 }

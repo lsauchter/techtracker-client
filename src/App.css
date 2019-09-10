@@ -1,30 +1,78 @@
 .App {
   text-align: center;
+  background-color: white;
+  color: #333333;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App_header {
-  align-items: center;
-  justify-content: center;
   position: fixed;
+  /* background: url('https://images.unsplash.com/photo-1544816565-c199d6f5d2d3') no-repeat; */
+  /* background-position-y: 75%; */
+  background: url('https://images.unsplash.com/photo-1555532538-dcdbd01d373d') no-repeat;
+  background-position-y: 35%;
+  background-size: cover;
   top: 0;
-  background-color: lightgrey;
   width: 100%;
+  height: 150px;
   z-index: 1;
-}
-
-.admin {
-  position: absolute;
-  right: 10px;
-  top: 30px;
 }
 
 .App_main {
   position: relative;
   top: 79px;
-  background-color: silver;
-  padding: 20px;
+  padding: 90px 10%;
 }
 
-body {
-  background-color: silver;
+:focus {
+  outline: 2pt solid rgb(74, 189, 216, 0.5)
+}
+
+.title_header {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  background-color: rgb(253, 130, 4, .85);
+  height: 100px;
+  width: 300px;
+  display: flex;
+}
+
+.title {
+  margin: auto;
+  font-weight: normal;
+  font-size: 45px;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+button {
+  color: white;
+  border: 2pt solid white;
+  background-color: #fd8204;
+  cursor: pointer;
+  width: 120px;
+  font-size: 12pt;
+  padding: 10px;
+  margin: 10px auto 0;
+}
+
+button:hover, button:focus {
+  background-color: #FFB718;
+}
+
+.admin {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  margin: 0;
+  background-color: transparent;
+}
+
+.admin:hover, .admin:focus {
+  background-color: #fd8204;
 }

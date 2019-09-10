@@ -7,12 +7,22 @@
     cursor: pointer;
 }
 
+.viewItems {
+    background-color: #EDECEB;
+    border: 2pt solid #fd8204;
+    padding-top: 15px;
+}
+
 .dashboard_heading {
-    font-size: 16pt;
-    font-weight: bolder;
-    background-color: darkgrey;
-    border: 2pt solid white;
+    font-size: 18px;
+    border: 2pt solid #fd8204;
     padding: 10px;
+    margin-top:10px;
+}
+
+.dashboard_heading:hover, .dashboard_heading:focus {
+    background-color: #fd8204;
+    color: white;
 }
 
 .accordion__button {

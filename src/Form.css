@@ -1,4 +1,27 @@
 .checkForm {
-    padding: 30px;
-    background-color: silver;
+    padding-top: 50px;
   }
+
+.namesFieldset {
+  padding: 15px 20px 20px;
+}
+
+select {
+  font-size: 14px;
+  width: 40px;
+}
+
+.names {
+  min-width: 125px;
+}
+
+legend {
+  font-size: 18px;
+}
+
+.fieldsetFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

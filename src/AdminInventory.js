@@ -39,44 +39,72 @@ export default function AdminInventory() {
     return (
         <Accordion allowZeroExpanded="true">
             <AccordionItem>
-                <AccordionItemHeading>
+                <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Add Items
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
-                    <form onSubmit={addInventorySubmit}>
-                        <label htmlFor="name">
-                            Name
-                        </label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                            />
-                        <label htmlFor="quantity">
-                            Quantity
-                        </label>
-                            <input
-                                type="text"
-                                name="quantity"
-                                id="quantity"
-                            />
-                        <label htmlFor="category">
-                            Category
-                        </label>
-                            <select id="category">
-                                <option value="computer">Computer</option>
-                                <option value="tablet">Tablet</option>
-                            </select>
-                        <label htmlFor="image">
-                            Image URL
-                        </label>
-                            <input
-                                type="text"
-                                name="image"
-                                id="image"
-                            />
+                    <form onSubmit={addInventorySubmit} className="addFormContainer">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label htmlFor="name">
+                                        Name
+                                    </label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        id="name"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="quantity">
+                                        Quantity
+                                    </label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        name="quantity"
+                                        id="quantity"
+                                    />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="category">
+                                        Category
+                                    </label>
+                                </td>
+                                <td>
+                                    <select id="category">
+                                        <option value="computer">Computer</option>
+                                        <option value="tablet">Tablet</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label htmlFor="image">
+                                        Image URL
+                                    </label>
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        name="image"
+                                        id="image"
+                                    />
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
                         <button type="submit" className="item">
                             Add Item
                         </button>
@@ -84,14 +112,13 @@ export default function AdminInventory() {
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
-                <AccordionItemHeading>
+                <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Remove Items
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <form onSubmit={deleteInventorySubmit}>
-                        <label htmlFor="item">Item</label>
                         <select id="item">
                             {inventoryNames}
                         </select>

@@ -1,5 +1,5 @@
 .item {
-    margin: 15px auto;
+    margin: 15px
 }
 
 .accordion__heading {
@@ -8,4 +8,17 @@
     background-color: lightgrey;
     border: 2pt solid white;
     padding: 10px;
+}
+
+.addForm {
+    display: inline;
+}
+
+.addFormContainer {
+    margin: auto;
+    display: table;
+}
+
+select[id="category"], select[id="item"] {
+    min-width: 138px;
 }

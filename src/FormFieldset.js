@@ -58,7 +58,7 @@ export default function FormFieldset(props) {
     }
 
     return (
-        <fieldset className={category}>
+        <fieldset className={category + ' flexField'}>
             <legend>{category}</legend>
             <ul className="flex">
                 {items(inventory)}

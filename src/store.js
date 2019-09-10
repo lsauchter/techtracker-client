@@ -64,7 +64,7 @@ const STORE = {
             quantity: 6,
             quantityAvailable: 6,
             category: 'computer',
-            image: 'https://i.ebayimg.com/images/g/Kn0AAOSwv-ZZ83Fg/s-l640.jpg'
+            image: 'https://images.reevoo.com/products/26359/26359231/550x550.jpg?fingerprint=fa47133ea83b4f36d0cf3c3e9ae68dfb957392a9&gravity=Center'
         },
         {
             id: 7,

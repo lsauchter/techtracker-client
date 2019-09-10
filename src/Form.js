@@ -19,14 +19,19 @@ export default function Form() {
 
     return (
         <form onSubmit={handleSubmit} className="checkForm" id="checkForm">
-            <label htmlFor="name">Name:</label>
-            <select
-                id="name"
-                onChange={e => setUser(e.target.value)}>
-                {names}
-            </select>
+            <fieldset className="namesFieldset">
+                <legend>Name</legend>
+                <select
+                    id="name"
+                    onChange={e => setUser(e.target.value)}
+                    className="names">
+                    {names}
+                </select>
+            </fieldset>
+            <div className="fieldsetFlex">
             {(computers.length > 0) && <FormFieldset category="Computers" inventory={computers}/>}
             {(tablets.length > 0) && <FormFieldset category="Tablets" inventory={tablets}/>}
-        </form>
+            </div>
+       </form>
     )
 }

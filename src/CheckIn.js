@@ -80,7 +80,7 @@ export default function CheckIn(props) {
 
     return (
         <ContextForm.Provider value={contextValue}>
-            <h2>Check In</h2>
+            <h2 className="formHeader">Check In</h2>
             <Form />
             <button
                 type="submit"

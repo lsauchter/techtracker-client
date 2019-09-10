@@ -83,7 +83,7 @@ function App() {
     const items = itemList.map(listItem => inventory.find(item => item.id === listItem).name).join(', ')
     const name = users.find(person => person.id === user).name
     updateConfirmation(() => {
-    return (<p className="deleted" role='alert'>
+    return (<p className="confirmation" role='alert'>
       {name} {checkMethod} {items}</p>
     )}
     )
@@ -177,12 +177,12 @@ function App() {
     <ContextInventory.Provider value={contextValue}>
     <div className="App">
       <header className="App_header">
-        <h1>
-          <Link to="/">TechTracker</Link>
+        <h1 className="title_header">
+          <Link to="/" className="title">TechTracker</Link>
         </h1>
-        <div className="admin">
-          <Link to="/admin/login">Admin</Link>
-        </div>
+        <Link to="/admin/login" className="adminLink">
+            <button className="admin">Admin</button>
+        </Link>
       </header>
       <main className="App_main">
         {renderRoutes()}

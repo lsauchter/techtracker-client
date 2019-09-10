@@ -41,7 +41,7 @@ export default function AdminDashboard() {
                         View Checked Out Items
                     </AccordionItemButton>
                 </AccordionItemHeading>
-                <AccordionItemPanel>
+                <AccordionItemPanel className="viewItems">
                     <AdminViewItems />
                 </AccordionItemPanel>
             </AccordionItem>

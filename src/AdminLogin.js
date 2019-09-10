@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import './AdminLogin.css';
 
 export default function AdminLogin(props) {
-    const [errorMessage, updateErrorMessage] = useState(<></>)
+    const [errorMessage, updateErrorMessage] = useState(<p className="empty" />)
 
     const handleSubmit = e => {
         e.preventDefault()
-        updateErrorMessage(<></>)
+        updateErrorMessage(<p className="empty" />)
         const {username, password} = e.target
         if (username.value !== "test" || password.value !== "test") {
             updateErrorMessage(<p className="error">Incorrect username or password</p>)
@@ -15,14 +15,15 @@ export default function AdminLogin(props) {
     }
     return (
         <form className="login" onSubmit={e => handleSubmit(e)}>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="loginCred">Username</label>
             <input
                 type="text"
                 id="username"
                 name="username"
                 placeholder="Enter username here"
             />
-            <label htmlFor="password">Password</label>
+            <br />
+            <label htmlFor="password" className="loginCred">Password</label>
             <input
                 type="text"
                 id="password"
@@ -30,7 +31,7 @@ export default function AdminLogin(props) {
                 placeholder="Enter password here"
             />
             {errorMessage}
-            <button type="submit">
+            <button className="loginButton" type="submit">
                 Log In
             </button>
         </form>

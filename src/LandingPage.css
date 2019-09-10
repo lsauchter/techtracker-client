@@ -2,10 +2,9 @@
     padding: 10px;
   }
   
-  .buttonLink {
-    background-color: white;
-    padding: 5px;
-    font-size: 10pt;
-    cursor: pointer;
-    margin: 10px auto;
+ div > .confirmation {
+    border: 5px solid #4ABDD8;
+    background-color: #D41A68;
+    padding: 10px;
+    color: white;
   }

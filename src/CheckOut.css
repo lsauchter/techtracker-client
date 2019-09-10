@@ -1,6 +1,17 @@
 button {
-    background-color: white;
-    padding: 5px;
-    font-size: 10pt;
-    cursor: pointer;
-  }
+  padding: 5px;
+  font-size: 10pt;
+  cursor: pointer;
+}
+
+.formHeader {
+  margin: 0;
+  padding: 10px;
+  background-color: rgb(253, 130, 4, 0.85);
+  color: white;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 150px;
+  font-weight: normal;
+}

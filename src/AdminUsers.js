@@ -32,7 +32,7 @@ export default function AdminUser() {
     return (
         <Accordion allowZeroExpanded="true">
             <AccordionItem>
-                <AccordionItemHeading>
+                <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Add User
                     </AccordionItemButton>
@@ -43,6 +43,7 @@ export default function AdminUser() {
                             type="text"
                             name="addUser"
                             id="addUser"
+                            placeholder="Enter name..."
                         />
                         <button type="submit" className="user">
                             Add User
@@ -51,7 +52,7 @@ export default function AdminUser() {
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
-                <AccordionItemHeading>
+                <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Remove User
                     </AccordionItemButton>

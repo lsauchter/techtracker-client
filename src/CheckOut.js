@@ -70,7 +70,7 @@ export default function CheckOut(props) {
     
     return (
         <ContextForm.Provider value={contextValue}>
-            <h2>Check Out</h2>
+            <h2 className="formHeader">Check Out</h2>
             <Form />
             <button
                 type="submit"
