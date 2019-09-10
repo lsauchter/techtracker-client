@@ -24,4 +24,14 @@ select[id="user"] {
     .userAccordion * {
         font-size: 16pt;
       }
+
+    input[id="addUser"] {
+        height: 24px;
+        margin-top: 20px;
+    }
+
+    .user {
+        display: inline;
+        margin: 10px 0 ;
+    }
 }
