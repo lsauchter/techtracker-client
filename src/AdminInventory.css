@@ -17,10 +17,16 @@
 .addFormContainer {
     margin: auto;
     display: table;
+    text-align: left;
+    width: auto;
+}
+
+table label {
+    text-align: right;
 }
 
 select[id="category"], select[id="item"] {
-    min-width: 138px;
+    width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -28,7 +34,16 @@ select[id="category"], select[id="item"] {
         font-size: 16pt;
       }
     
-      select[id="item"] {
-          margin-top: 15px;
-      }
+    select[id="item"] {
+        margin-top: 15px;
+    }
+
+    .left {
+        text-align: left;
+    }
+    
+    .addFormContainer input {
+        padding: 0;
+        width: 100%;
+    }
 }

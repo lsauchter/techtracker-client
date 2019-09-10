@@ -32,6 +32,6 @@ select[id="user"] {
 
     .user {
         display: inline;
-        margin: 10px 0 ;
+        margin: 10px;
     }
 }

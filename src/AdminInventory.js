@@ -82,7 +82,7 @@ export default function AdminInventory() {
                                         Category
                                     </label>
                                 </td>
-                                <td>
+                                <td className="left">
                                     <select id="category">
                                         <option value="computer">Computer</option>
                                         <option value="tablet">Tablet</option>
