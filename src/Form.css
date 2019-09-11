@@ -26,6 +26,10 @@ legend {
   justify-content: space-between;
 }
 
+.names:invalid {
+  color: grey;
+}
+
 @media (max-width: 500px) {
   .fieldsetFlex {
     display: block;

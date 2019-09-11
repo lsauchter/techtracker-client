@@ -20,13 +20,14 @@ export default function AdminUser() {
         e.preventDefault()
         const name = e.target.addUser.value
         addUser(name)
-        
+        e.target.reset();
     }
 
     const deleteUserSubmit = (e) => {
         e.preventDefault()
         const name = e.target.user.value
         deleteUser(name)
+        e.target.reset();
     }
 
     return (
@@ -59,7 +60,10 @@ export default function AdminUser() {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <form onSubmit={deleteUserSubmit}>
-                        <select id="user">
+                        <select id="user"
+                            defaultValue=''
+                            required>
+                            <option value='' disabled>Select name...</option>
                             {userNames}
                         </select>
                         <button type="submit" className="user">

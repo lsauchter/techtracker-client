@@ -83,7 +83,12 @@ export default function AdminInventory() {
                                     </label>
                                 </td>
                                 <td className="left">
-                                    <select id="category">
+                                    <select
+                                        id="category"
+                                        defaultValue=""
+                                        required
+                                        >
+                                        <option value="" disabled>Select...</option>
                                         <option value="computer">Computer</option>
                                         <option value="tablet">Tablet</option>
                                     </select>
@@ -119,7 +124,12 @@ export default function AdminInventory() {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                     <form onSubmit={deleteInventorySubmit}>
-                        <select id="item">
+                        <select
+                            id="item"
+                            defaultValue=""
+                            required
+                            >
+                            <option value="" disabled>Select item</option>
                             {inventoryNames}
                         </select>
                         <button type="submit" className="item">

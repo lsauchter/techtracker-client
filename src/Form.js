@@ -24,7 +24,11 @@ export default function Form() {
                 <select
                     id="name"
                     onChange={e => setUser(e.target.value)}
-                    className="names">
+                    className="names"
+                    defaultValue=''
+                    required
+                    >
+                    <option value='' disabled>Select name...</option>
                     {names}
                 </select>
             </fieldset>

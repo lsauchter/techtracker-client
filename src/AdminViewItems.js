@@ -17,7 +17,7 @@ export default function AdminViewItems() {
                 <p>{user.name} has {itemList} checked out</p>
             </div>
         }
-        return <></>
+        return true
     })
 
     return (

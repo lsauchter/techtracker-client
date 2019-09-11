@@ -47,7 +47,9 @@ export default function FormFieldset(props) {
                         id={'quantity ' + item.id}
                         name={item.category + 'Quantity'}
                         onChange={(e) => inventoryQuantity(e.target.value, item.id)}
+                        defaultValue=''
                     >
+                        <option value=''> </option>
                         {options(quantity)}
                     </select>
 

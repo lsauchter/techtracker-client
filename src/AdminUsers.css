@@ -20,6 +20,10 @@ select[id="user"] {
     min-width: 100px;
 }
 
+select:invalid {
+    color: grey;
+  }
+
 @media (max-width: 500px) {
     .userAccordion * {
         font-size: 16pt;
