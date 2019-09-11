@@ -80,7 +80,10 @@ function App() {
 
   function confirmationText(user, data, checkMethod) {
     const itemList = Object.keys(data).map(Number)
-    const items = itemList.map(listItem => inventory.find(item => item.id === listItem).name).join(', ')
+    const items = itemList.map(listItem => {
+      const itemData = inventory.find(item => item.id === listItem)
+      return `${data[listItem]} ${itemData.name}`
+      }).join(', ')
     const name = users.find(person => person.id === user).name
     updateConfirmation(() => {
     return (<p className="confirmation" role='alert'>
