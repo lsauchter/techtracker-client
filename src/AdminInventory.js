@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -11,6 +11,8 @@ import './AdminInventory.css'
 
 export default function AdminInventory() {
     const {inventory, addInventory, deleteInventory} = useContext(ContextInventory)
+    const [confirmation, updateConfirmation] = useState({})
+    const [confirmationForm, updateConfirmationForm] = useState('')
 
     const inventoryNames = inventory.map(item => {
         return <option key={item.id} value={item.name}>{item.name}</option>
@@ -26,14 +28,26 @@ export default function AdminInventory() {
             image: image.value
         }
         addInventory(item)
-        console.log(item, 'added')
+        confirmationText('addItem', {name: item.name, method: 'added'})
+        e.target.reset();
     }
 
     const deleteInventorySubmit = e => {
         e.preventDefault()
         const item = e.target.item.value
-        console.log(item)
         deleteInventory(item)
+        confirmationText('removeItem', {name: item, method: 'removed'})
+        e.target.reset();
+    }
+
+    function confirmationText(form, data) {
+        updateConfirmationForm(form)
+        updateConfirmation(() => {
+            return (<p className="confirmation" role='alert'>
+              {data.name} {data.method}</p>
+            )}
+            )
+        setTimeout(() => {updateConfirmation('')}, 5000);
     }
 
     return (
@@ -114,6 +128,7 @@ export default function AdminInventory() {
                             Add Item
                         </button>
                     </form>
+                    {(confirmationForm === 'addItem') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
@@ -136,6 +151,7 @@ export default function AdminInventory() {
                             Delete Item
                         </button>
                     </form>
+                    {(confirmationForm === 'removeItem') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
         </Accordion>

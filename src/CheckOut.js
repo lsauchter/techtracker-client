@@ -58,6 +58,10 @@ export default function CheckOut(props) {
         checkForm(userForm.id, formData, 'checked out')
     }
 
+    const handleClickCancel = () => {
+        props.history.push('/');
+    };
+
     const contextValue = {
         users,
         inventory,
@@ -77,6 +81,10 @@ export default function CheckOut(props) {
                 form="checkForm"
                 onClick={() => {checkOut()}}>
                 Check Out
+            </button>
+            <button
+                onClick={handleClickCancel}>
+                Cancel
             </button>
         </ContextForm.Provider>
     )

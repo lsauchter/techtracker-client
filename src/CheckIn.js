@@ -8,9 +8,9 @@ export default function CheckIn(props) {
     const {users, inventory, checkForm} = useContext(ContextInventory)
 
     /* setting values for the form render */
-    const [userForm, updateUserForm] = useState(users[0])
-    const [userInventory, updateUserInventory] = useState(inventory)
-    const [inventoryNumber, updateInventoryNumber] = useState(users[0].checkedOut)
+    const [userForm, updateUserForm] = useState('')
+    const [userInventory, updateUserInventory] = useState([])
+    const [inventoryNumber, updateInventoryNumber] = useState('')
 
     const setUser = targetName => {
         const user = users.find(person => person.name === targetName)
@@ -18,18 +18,20 @@ export default function CheckIn(props) {
     }
 
     useEffect(() => {
-        const user = users.find(person => person.id === userForm.id)
-        const {checkedOut} = user
-        const ids = Object.keys(checkedOut).map(Number)
-        const checkedOutItems = inventory.filter(item => {
-            if(ids.includes(item.id)) {
-                return item
-            }
-            return false
-            })
-        updateUserInventory([...checkedOutItems
-        ])
-        updateInventoryNumber(checkedOut)
+        if (Number(userForm.id)) {
+            const user = users.find(person => person.id === userForm.id)
+            const {checkedOut} = user
+            const ids = Object.keys(checkedOut).map(Number)
+            const checkedOutItems = inventory.filter(item => {
+                if(ids.includes(item.id)) {
+                    return item
+                }
+                return false
+                })
+            updateUserInventory([...checkedOutItems
+            ])
+            updateInventoryNumber(checkedOut)
+        }
     }, [userForm, users, inventory])
 
     /* storing inventory values from form */
@@ -63,10 +65,13 @@ export default function CheckIn(props) {
     }
 
     /* submit form data */
-
     const checkIn = () => {
         checkForm(userForm.id, formData, 'checked in')
     }
+
+    const handleClickCancel = () => {
+        props.history.push('/');
+    };
 
     const contextValue = {
         users,
@@ -87,6 +92,10 @@ export default function CheckIn(props) {
                 form="checkForm"
                 onClick={() => {checkIn()}}>
                 Check In
+            </button>
+            <button
+                onClick={handleClickCancel}>
+                Cancel
             </button>
         </ContextForm.Provider>
     )

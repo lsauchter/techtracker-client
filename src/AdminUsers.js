@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -11,6 +11,9 @@ import './AdminUsers.css'
 
 export default function AdminUser() {
     const {users, addUser, deleteUser} = useContext(ContextInventory)
+    const [confirmation, updateConfirmation] = useState({})
+    const [confirmationForm, updateConfirmationForm] = useState('')
+
 
     const userNames = users.map(user => {
         return <option key={user.id} value={user.name}>{user.name}</option>
@@ -20,6 +23,7 @@ export default function AdminUser() {
         e.preventDefault()
         const name = e.target.addUser.value
         addUser(name)
+        confirmationText('addUser', {name, method: 'added'})
         e.target.reset();
     }
 
@@ -27,7 +31,18 @@ export default function AdminUser() {
         e.preventDefault()
         const name = e.target.user.value
         deleteUser(name)
+        confirmationText('removeUser', {name, method: 'removed'})
         e.target.reset();
+    }
+
+    function confirmationText(form, data) {
+        updateConfirmationForm(form)
+        updateConfirmation(() => {
+            return (<p className="confirmation" role='alert'>
+              {data.name} {data.method}</p>
+            )}
+            )
+        setTimeout(() => {updateConfirmation('')}, 5000);
     }
 
     return (
@@ -50,6 +65,7 @@ export default function AdminUser() {
                             Add User
                         </button>
                     </form>
+                    {(confirmationForm === 'addUser') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem>
@@ -70,6 +86,7 @@ export default function AdminUser() {
                             Delete User
                         </button>
                     </form>
+                    {(confirmationForm === 'removeUser') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
         </Accordion>

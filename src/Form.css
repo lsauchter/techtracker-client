@@ -30,6 +30,16 @@ legend {
   color: grey;
 }
 
+.emptyForm {
+  padding: 5px 15px 15px;
+  border: 2px groove #c0c0c0;
+  width: 100%;
+}
+
+.checkOutLink {
+  width: 200px;
+}
+
 @media (max-width: 500px) {
   .fieldsetFlex {
     display: block;
