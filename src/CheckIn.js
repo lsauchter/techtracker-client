@@ -22,7 +22,7 @@ export default function CheckIn(props) {
         if (Number(userForm.id)) {
             const user = findUser(users, userForm.id)
             const {checkedOut} = user
-            const ids = Object.keys(checkedOut).map(Number)
+            const ids = Object.keys(checkedOut)
             const checkedOutItems = inventory.filter(item => {
                 if(ids.includes(item.id)) {
                     return item
