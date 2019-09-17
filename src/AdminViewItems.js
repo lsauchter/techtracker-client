@@ -10,7 +10,7 @@ export default function AdminViewItems() {
         if(Object.keys(user.checkedOut).length > 0) {
             const ids = Object.keys(user.checkedOut)
             const itemList = ids.map(item => {
-                const name = findInventory(inventory, Number(item)).name
+                const name = findInventory(inventory, item).name
                 return `${user.checkedOut[Number(item)]} ${name}`
             }).join(', ')
             

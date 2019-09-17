@@ -33,6 +33,7 @@ function App() {
         return Promise.all([userRes.json(), inventoryRes.json(), checkoutRes.json()])
       })
       .then(([userRes, inventoryRes, checkoutRes]) => {
+        updateInventory(inventoryRes)
         /* formatting checkout data to a more useable structure */
         const completeUsers = userRes.map(user => {
           const checkoutData = checkoutRes.filter(item => item.user_id === user.id)
@@ -52,7 +53,6 @@ function App() {
           return updatedUser
         })
         updateUsers(completeUsers)
-        updateInventory(inventoryRes)
       })
   }, [])
 
