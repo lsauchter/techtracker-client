@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Route, Link} from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import AdminLogin from './AdminLogin';
@@ -13,6 +13,48 @@ function App() {
   const [users, updateUsers] = useState(STORE.users);
   const [inventory, updateInventory] = useState(STORE.inventory);
   const [confirmation, updateConfirmation] = useState('')
+
+  /* initial data fetch */
+  useEffect(() => {
+    const userURL = 'https://boiling-bayou-06844.herokuapp.com/api/users'
+    const inventoryURL = 'https://boiling-bayou-06844.herokuapp.com/api/inventory'
+    const checkoutURL = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkout'
+    Promise.all([fetch(userURL), fetch(inventoryURL), fetch(checkoutURL)])
+      .then(([userRes, inventoryRes, checkoutRes]) => {
+        if (!userRes) {
+          return userRes.json().then(error => Promise.reject(error))
+        }
+        if (!inventoryRes) {
+          return inventoryRes.json().then(error => Promise.reject(error))
+        }
+        if (!checkoutRes) {
+          return inventoryRes.json().then(error => Promise.reject(error))
+        }
+        return Promise.all([userRes.json(), inventoryRes.json(), checkoutRes.json()])
+      })
+      .then(([userRes, inventoryRes, checkoutRes]) => {
+        /* formatting checkout data to a useable form */
+        const completeUsers = userRes.map(user => {
+          const checkoutData = checkoutRes.filter(item => item.user_id === user.id)
+          let formattedData = {}
+          checkoutData.forEach(data => {
+            formattedData = {
+            ...formattedData,
+            [data.inventory_id]: data.quantity
+            }
+          })
+          const updatedUser = {
+            ...user,
+            checkedOut: {
+              ...formattedData
+            }
+          }
+          return updatedUser
+        })
+        updateUsers(completeUsers)
+        updateInventory(inventoryRes)
+      })
+  }, [])
 
   /* handle check in and out form submission */
   const checkForm = (user, data, checkMethod) => {
