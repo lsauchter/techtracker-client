@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import ContextInventory from './ContextInventory'
+import {findInventory} from './helper'
 import './AdminViewItems.css'
 
 export default function AdminViewItems() {
@@ -9,7 +10,7 @@ export default function AdminViewItems() {
         if(Object.keys(user.checkedOut).length > 0) {
             const ids = Object.keys(user.checkedOut)
             const itemList = ids.map(item => {
-                const name = inventory.find(inv => inv.id === Number(item)).name
+                const name = findInventory(inventory, Number(item)).name
                 return `${user.checkedOut[Number(item)]} ${name}`
             }).join(', ')
             

@@ -6,12 +6,12 @@ import CheckIn from './CheckIn';
 import CheckOut from './CheckOut';
 import LandingPage from './LandingPage';
 import ContextInventory from './ContextInventory';
-import STORE from './store';
+import { findUser, findInventory } from './helper';
 import './App.css';
 
 function App() {
-  const [users, updateUsers] = useState(STORE.users);
-  const [inventory, updateInventory] = useState(STORE.inventory);
+  const [users, updateUsers] = useState([]);
+  const [inventory, updateInventory] = useState([]);
   const [confirmation, updateConfirmation] = useState('')
 
   /* initial data fetch */
@@ -33,7 +33,7 @@ function App() {
         return Promise.all([userRes.json(), inventoryRes.json(), checkoutRes.json()])
       })
       .then(([userRes, inventoryRes, checkoutRes]) => {
-        /* formatting checkout data to a useable form */
+        /* formatting checkout data to a more useable structure */
         const completeUsers = userRes.map(user => {
           const checkoutData = checkoutRes.filter(item => item.user_id === user.id)
           let formattedData = {}
@@ -71,7 +71,7 @@ function App() {
   }
 
   function checkOutUser(user, data) {
-    const userToUpdate = users.find(person => person.id === user)
+    const userToUpdate = findUser(users, user)
     updateUsers(() => {
       userToUpdate.checkedOut = {
         ...userToUpdate.checkedOut,
@@ -84,7 +84,7 @@ function App() {
   function checkOutInventory(data) {
     const items = Object.keys(data).map(Number)
     items.forEach(item => {
-      const itemToUpdate = inventory.find(tech => tech.id === item)
+      const itemToUpdate = findInventory(inventory, item)
       const currentNum = itemToUpdate.quantityAvailable
       updateInventory(() => {
         itemToUpdate.quantityAvailable = (currentNum - data[item])
@@ -94,7 +94,7 @@ function App() {
   }
 
   function checkInUser(user, data) {
-    const userToUpdate = users.find(person => person.id === user)
+    const userToUpdate = findUser(users, user)
     const items = Object.keys(data).map(Number)
     items.forEach(item => {
       const currentNum = userToUpdate.checkedOut[item]
@@ -111,7 +111,7 @@ function App() {
   function checkInInventory(data) {
     const items = Object.keys(data).map(Number)
     items.forEach(item => {
-      const itemToUpdate = inventory.find(tech => tech.id === item)
+      const itemToUpdate = findInventory(inventory, item)
       const currentNum = itemToUpdate.quantityAvailable
       updateInventory(() => {
         itemToUpdate.quantityAvailable = (currentNum + data[item])
@@ -123,10 +123,10 @@ function App() {
   function confirmationText(user, data, checkMethod) {
     const itemList = Object.keys(data).map(Number)
     const items = itemList.map(listItem => {
-      const itemData = inventory.find(item => item.id === listItem)
+      const itemData = findInventory(inventory, listItem)
       return `${data[listItem]} ${itemData.name}`
       }).join(', ')
-    const name = users.find(person => person.id === user).name
+    const name = findUser(users, user).name
     updateConfirmation(() => {
     return (<p className="confirmation" role='alert'>
       {name} {checkMethod} {items}</p>

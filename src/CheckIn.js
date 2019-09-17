@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import ContextInventory from './ContextInventory';
 import ContextForm from './ContextForm';
 import Form from './Form';
+import {findUser} from './helper'
 import './CheckIn.css';
 
 export default function CheckIn(props) {
@@ -19,7 +20,7 @@ export default function CheckIn(props) {
 
     useEffect(() => {
         if (Number(userForm.id)) {
-            const user = users.find(person => person.id === userForm.id)
+            const user = findUser(users, userForm.id)
             const {checkedOut} = user
             const ids = Object.keys(checkedOut).map(Number)
             const checkedOutItems = inventory.filter(item => {
