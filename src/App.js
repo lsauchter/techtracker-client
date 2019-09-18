@@ -97,9 +97,7 @@ function App() {
     const userToUpdate = findUser(users, user)
     const items = Object.keys(data).map(Number)
     items.forEach(item => {
-      const currentNum = userToUpdate.checkedOut[item]
       updateUsers(() => {
-        userToUpdate.checkedOut[item] = (currentNum - data[item])
         if (userToUpdate.checkedOut[item] === 0) {
           delete userToUpdate.checkedOut[item]
         }

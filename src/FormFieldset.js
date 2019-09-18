@@ -3,7 +3,6 @@ import ContextForm from './ContextForm';
 import './FormFieldset.css';
 
 export default function FormFieldset(props) {
-    console.log('fieldset')
     const {category, inventory} = props
     const {inventoryNumber, inventoryKey, inventoryQuantity} = useContext(ContextForm)
 

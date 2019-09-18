@@ -55,7 +55,26 @@ export default function CheckOut(props) {
 
     /* submit form info */
     const checkOut = () => {
-        checkForm(userForm.id, formData, 'checked out')
+        const checkoutData = {
+            'user_id': Number(userForm.id),
+            'data': formData
+        }
+        const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkout'
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(checkoutData),
+            headers: {'content-type': 'application/json'}
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {throw error})
+            }
+            return Promise.resolve('ok')
+        })
+        .then(() => {
+            checkForm(userForm.id, formData, 'checked out')
+        })
+        .catch()
     }
 
     const handleClickCancel = () => {

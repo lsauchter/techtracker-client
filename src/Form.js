@@ -5,7 +5,6 @@ import FormFieldset from './FormFieldset';
 import './Form.css';
 
 export default function Form() {
-    console.log('form')
     const {users, inventory, setUser, history} = useContext(ContextForm)
     const [touched, updateTouch] = useState(false)
     const computers = inventory.filter(item => item.category === 'computer')

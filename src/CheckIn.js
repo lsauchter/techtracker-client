@@ -67,6 +67,49 @@ export default function CheckIn(props) {
 
     /* submit form data */
     const checkIn = () => {
+        const items = Object.keys(formData).map(Number)
+        const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkin'
+        items.forEach(item => {
+            const currentNum = Number(userForm.checkedOut[item])
+            userForm.checkedOut[item] = (currentNum - formData[item])
+            if (userForm.checkedOut[item] === 0) {
+                const checkinData = {
+                    user_id: Number(userForm.id),
+                    inventory_id: item
+                }
+                fetch(url, {
+                method: 'DELETE',
+                body: JSON.stringify(checkinData),
+                headers: {'content-type': 'application/json'}
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => {throw error})
+                    }
+                    return Promise.resolve('ok')
+                })
+                .catch() 
+            }
+            else {
+                const checkinData = {
+                    user_id: userForm.id,
+                    inventory_id: item,
+                    quantity: userForm.checkOut[item]
+                }
+                fetch(url, {
+                method: 'PATCH',
+                body: JSON.stringify(checkinData),
+                headers: {'content-type': 'application/json'}
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(error => {throw error})
+                    }
+                    return Promise.resolve('ok')
+                })
+                .catch() 
+            }
+        })
         checkForm(userForm.id, formData, 'checked in')
     }
 
