@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -7,6 +7,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import ContextInventory from './ContextInventory'
+import {findUserByName} from './helper'
 import './AdminUsers.css'
 
 export default function AdminUser() {
@@ -22,28 +23,77 @@ export default function AdminUser() {
     const addUserSubmit = (e) => {
         e.preventDefault()
         const name = e.target.addUser.value
-        addUser(name)
-        confirmationText('addUser', {name, method: 'added'})
+        const userData = {
+            'name': name
+        }
+        const url = 'https://boiling-bayou-06844.herokuapp.com/api/users'
         e.target.reset();
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(userData),
+            headers: {'content-type': 'application/json'}
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {throw error})
+            }
+            return response.json()
+        })
+        .then((response) => {
+            const newUser = {
+                id: response.id,
+                name: response.name,
+                checkedOut: {}
+            }
+            addUser(newUser)
+            confirmationText('addUser', {name: response.name, method: 'added'})
+        })
+        .catch()
     }
 
     const deleteUserSubmit = (e) => {
         e.preventDefault()
         const name = e.target.user.value
-        deleteUser(name)
-        confirmationText('removeUser', {name, method: 'removed'})
+        const user = findUserByName(users, name)
+        let checkout = false
         e.target.reset();
+
+        if (Object.keys(user.checkedOut).length > 0) {
+            checkout = true
+        }
+
+        const url = `https://boiling-bayou-06844.herokuapp.com/api/users?id=${user.id}&clearCheckOut=${checkout}`
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {'content-type': 'application/json'}
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {throw error})
+            }
+            deleteUser(name)
+            confirmationText('removeUser', {name, method: 'removed'})
+        })
+        .catch()
     }
 
+    let timer
+
     function confirmationText(form, data) {
-        updateConfirmationForm(form)
+        clearTimeout(timer)
         updateConfirmation(() => {
             return (<p className="confirmation" role='alert'>
               {data.name} {data.method}</p>
             )}
             )
-        setTimeout(() => {updateConfirmation('')}, 5000);
+        updateConfirmationForm(form)
+        timer = setTimeout(() => {updateConfirmation('')}, 5000);
     }
+
+    useEffect(() => {
+        return clearTimeout(timer)
+    })
 
     return (
         <Accordion allowZeroExpanded="true" className="userAccordion">

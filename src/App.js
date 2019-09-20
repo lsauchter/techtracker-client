@@ -134,13 +134,7 @@ function App() {
   }
 
   /* handle Admin actions */
-  function addUser(name) {
-    const newId = users[users.length - 1].id + 1
-    const newUser = {
-      id: newId,
-      name,
-      checkedOut: {}
-    }
+  function addUser(newUser) {
     updateUsers(() => {
       const newUsers = [...users, newUser]
       return newUsers

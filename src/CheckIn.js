@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import ContextInventory from './ContextInventory';
 import ContextForm from './ContextForm';
 import Form from './Form';
-import {findUser} from './helper'
+import {findUser, findUserByName} from './helper'
 import './CheckIn.css';
 
 export default function CheckIn(props) {
@@ -14,7 +14,7 @@ export default function CheckIn(props) {
     const [inventoryNumber, updateInventoryNumber] = useState('')
 
     const setUser = targetName => {
-        const user = users.find(person => person.name === targetName)
+        const user = findUserByName(users, targetName)
         updateUserForm(user)
     }
 

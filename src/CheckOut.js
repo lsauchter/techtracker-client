@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import ContextInventory from './ContextInventory';
 import ContextForm from './ContextForm';
 import Form from './Form';
+import {findUserByName} from './helper'
 import './CheckOut.css';
 
 export default function CheckOut(props) {
@@ -49,7 +50,7 @@ export default function CheckOut(props) {
     }
 
     const setUser = targetName => {
-        const user = users.find(person => person.name === targetName)
+        const user = findUserByName(users, targetName)
         updateUserForm(user)
     }
 
