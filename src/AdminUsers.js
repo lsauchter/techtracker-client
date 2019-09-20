@@ -93,7 +93,7 @@ export default function AdminUser() {
 
     useEffect(() => {
         return clearTimeout(timer)
-    })
+    }, [timer])
 
     return (
         <Accordion allowZeroExpanded="true" className="userAccordion">

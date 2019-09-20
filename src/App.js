@@ -118,6 +118,8 @@ function App() {
     })
   }
 
+  let timer
+
   function confirmationText(user, data, checkMethod) {
     const itemList = Object.keys(data).map(Number)
     const items = itemList.map(listItem => {
@@ -130,8 +132,12 @@ function App() {
       {name} {checkMethod} {items}</p>
     )}
     )
-    setTimeout(() => {updateConfirmation('')}, 5000);
+    timer = setTimeout(() => {updateConfirmation('')}, 5000);
   }
+
+  useEffect(() => {
+    return clearTimeout(timer)
+  }, [timer])
 
   /* handle Admin actions */
   function addUser(newUser) {

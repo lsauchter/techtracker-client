@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {
     Accordion,
     AccordionItem,
@@ -27,28 +27,75 @@ export default function AdminInventory() {
             category: category.value,
             image: image.value
         }
-        addInventory(item)
-        confirmationText('addItem', {name: item.name, method: 'added'})
+        const url = 'https://boiling-bayou-06844.herokuapp.com/api/inventory'
         e.target.reset();
+        
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(item),
+            headers: {'content-type': 'application/json'}
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {throw error})
+            }
+            return response.json()
+        })
+        .then((response) => {
+            const newItem = {
+                id: response.id,
+                name: response.name,
+                quantity: response.quantity,
+                category: response.category,
+                image: response.image
+            }
+            console.log(newItem)
+            addInventory(newItem)
+            confirmationText('addItem', {name: item.name, method: 'added'})
+        })
+        .catch()
     }
 
     const deleteInventorySubmit = e => {
         e.preventDefault()
-        const item = e.target.item.value
-        deleteInventory(item)
-        confirmationText('removeItem', {name: item, method: 'removed'})
+        const name = e.target.item.value
+        const item = inventory.find(inv => inv.name === name)
+
+        console.log(name, item)
+
+        const url = `https://boiling-bayou-06844.herokuapp.com/api/inventory?id=${item.id}`
         e.target.reset();
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {'content-type': 'application/json'}
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(error => {throw error})
+            }
+            deleteInventory(item.name)
+            confirmationText('removeItem', {name: item.name, method: 'removed'})
+        })
+        .catch()
     }
 
+    let timer
+
     function confirmationText(form, data) {
-        updateConfirmationForm(form)
+        clearTimeout(timer)
         updateConfirmation(() => {
             return (<p className="confirmation" role='alert'>
               {data.name} {data.method}</p>
             )}
             )
-        setTimeout(() => {updateConfirmation('')}, 5000);
+        updateConfirmationForm(form)
+        timer = setTimeout(() => {updateConfirmation('')}, 5000);
     }
+
+    useEffect(() => {
+        return clearTimeout(timer)
+    }, [timer])
 
     return (
         <Accordion allowZeroExpanded="true" className="inventoryAccordion">
