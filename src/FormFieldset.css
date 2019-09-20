@@ -30,6 +30,7 @@ label {
   cursor: pointer;
   display: block;
   border: 2pt solid white;
+  text-align: center;
 }
 
 .quantity {
@@ -51,9 +52,10 @@ input[type="checkbox"]:checked ~ div {
 img {
   display: block;
   width: 75px;
+  margin: auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .flexField {
     width: auto;
   }
