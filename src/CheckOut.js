@@ -7,6 +7,7 @@ import './CheckOut.css';
 
 export default function CheckOut(props) {
     const {users, inventory, checkForm} = useContext(ContextInventory)
+    const [errorMessage, updateErrorMessage] = useState(null)
     
     /* creating items for form render */
     const inventoryNumber = {}
@@ -29,7 +30,7 @@ export default function CheckOut(props) {
             if(!formData[id]) {
                 setFormData({
                     ...formData,
-                    [id]: 1
+                    [id]: 0
                 })
             }
         }
@@ -56,30 +57,42 @@ export default function CheckOut(props) {
 
     /* submit form info */
     const checkOut = () => {
+        updateErrorMessage(null)
         const checkoutData = {
             'user_id': Number(userForm.id),
             'data': formData
         }
-        const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkout'
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(checkoutData),
-            headers: {'content-type': 'application/json'}
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(error => {throw error})
-            }
-            return Promise.resolve('ok')
-        })
-        .then(() => {
-            checkForm(userForm.id, formData, 'checked out')
-        })
-        .catch()
+        
+        if (Object.keys(formData).length === 0) {
+            updateErrorMessage(() => {
+                return (<p className="confirmation" role="alert">
+                    You must select an item to check out
+                    </p>)
+            })
+        }
+        else {
+            const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkout'
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(checkoutData),
+                headers: {'content-type': 'application/json'}
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(error => {throw error})
+                }
+                return Promise.resolve('ok')
+            })
+            .then(() => {
+                checkForm(userForm.id, formData, 'checked out')
+                props.history.push('/')
+            })
+            .catch()
+        }
     }
 
     const handleClickCancel = () => {
-        props.history.push('/');
+        props.history.push('/')
     };
 
     const contextValue = {
@@ -89,13 +102,15 @@ export default function CheckOut(props) {
         inventoryKey,
         inventoryQuantity,
         setUser,
-        history: props.history
     }
     
     return (
         <ContextForm.Provider value={contextValue}>
             <h2 className="formHeader">Check Out</h2>
             <Form />
+            <div>
+                {(errorMessage) && errorMessage}
+            </div>
             <button
                 type="submit"
                 form="checkForm"

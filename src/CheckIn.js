@@ -7,6 +7,7 @@ import './CheckIn.css';
 
 export default function CheckIn(props) {
     const {users, inventory, checkForm} = useContext(ContextInventory)
+    const [errorMessage, updateErrorMessage] = useState(null)
 
     /* setting values for the form render */
     const [userForm, updateUserForm] = useState('')
@@ -68,49 +69,59 @@ export default function CheckIn(props) {
     /* submit form data */
     const checkIn = () => {
         const items = Object.keys(formData).map(Number)
-        const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkin'
-        items.forEach(item => {
-            const currentNum = Number(userForm.checkedOut[item])
-            userForm.checkedOut[item] = (currentNum - formData[item])
-            if (userForm.checkedOut[item] === 0) {
-                const checkinData = {
-                    user_id: Number(userForm.id),
-                    inventory_id: item
-                }
-                fetch(url, {
-                method: 'DELETE',
-                body: JSON.stringify(checkinData),
-                headers: {'content-type': 'application/json'}
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(error => {throw error})
+        if (items.length === 0) {
+            updateErrorMessage(() => {
+                return (<p className="confirmation" role="alert">
+                    You must select an item to check in
+                    </p>)
+            })
+        }
+        else {
+            const url = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkin'
+            items.forEach(item => {
+                const currentNum = Number(userForm.checkedOut[item])
+                userForm.checkedOut[item] = (currentNum - formData[item])
+                if (userForm.checkedOut[item] === 0) {
+                    const checkinData = {
+                        user_id: Number(userForm.id),
+                        inventory_id: item
                     }
-                    return Promise.resolve('ok')
-                })
-                .catch() 
-            }
-            else {
-                const checkinData = {
-                    user_id: userForm.id,
-                    inventory_id: item,
-                    quantity: userForm.checkOut[item]
+                    fetch(url, {
+                    method: 'DELETE',
+                    body: JSON.stringify(checkinData),
+                    headers: {'content-type': 'application/json'}
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(error => {throw error})
+                        }
+                        return Promise.resolve('ok')
+                    })
+                    .catch() 
                 }
-                fetch(url, {
-                method: 'PATCH',
-                body: JSON.stringify(checkinData),
-                headers: {'content-type': 'application/json'}
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(error => {throw error})
+                else {
+                    const checkinData = {
+                        user_id: userForm.id,
+                        inventory_id: item,
+                        quantity: userForm.checkOut[item]
                     }
-                    return Promise.resolve('ok')
-                })
-                .catch() 
-            }
-        })
-        checkForm(userForm.id, formData, 'checked in')
+                    fetch(url, {
+                    method: 'PATCH',
+                    body: JSON.stringify(checkinData),
+                    headers: {'content-type': 'application/json'}
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(error => {throw error})
+                        }
+                        return Promise.resolve('ok')
+                    })
+                    .catch() 
+                }
+            })
+            checkForm(userForm.id, formData, 'checked in')
+            props.history.push('/')
+        }
     }
 
     const handleClickCancel = () => {
@@ -124,13 +135,15 @@ export default function CheckIn(props) {
         inventoryKey,
         inventoryQuantity,
         setUser,
-        history: props.history
     }
 
     return (
         <ContextForm.Provider value={contextValue}>
             <h2 className="formHeader">Check In</h2>
             <Form />
+            <div>
+                {(errorMessage) && errorMessage}
+            </div>
             <button
                 type="submit"
                 form="checkForm"

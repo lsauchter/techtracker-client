@@ -15,3 +15,10 @@ button {
   top: 150px;
   font-weight: normal;
 }
+
+div > .confirmation {
+  border: 5px solid #4ABDD8;
+  background-color: #D41A68;
+  padding: 10px;
+  color: white;
+}
