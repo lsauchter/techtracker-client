@@ -7,7 +7,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import ContextInventory from './ContextInventory'
-import {findUserByName} from './helper'
+import {findUser} from './helper'
 import './AdminUsers.css'
 
 export default function AdminUser() {
@@ -17,7 +17,7 @@ export default function AdminUser() {
 
 
     const userNames = users.map(user => {
-        return <option key={user.id} value={user.name}>{user.name}</option>
+        return <option key={user.id} value={user.id}>{user.name}</option>
     })
 
     const addUserSubmit = (e) => {
@@ -53,8 +53,8 @@ export default function AdminUser() {
 
     const deleteUserSubmit = (e) => {
         e.preventDefault()
-        const name = e.target.user.value
-        const user = findUserByName(users, name)
+        const id = e.target.user.value
+        const user = findUser(users, id)
         let checkout = false
         e.target.reset();
 
@@ -72,8 +72,8 @@ export default function AdminUser() {
             if (!response.ok) {
                 return response.json().then(error => {throw error})
             }
-            deleteUser(name)
-            confirmationText('removeUser', {name, method: 'removed'})
+            deleteUser(id)
+            confirmationText('removeUser', {name: user.name, method: 'removed'})
         })
         .catch()
     }

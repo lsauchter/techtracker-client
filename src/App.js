@@ -147,33 +147,31 @@ function App() {
     })
   }
 
-  function deleteUser(name) {
+  function deleteUser(id) {
     updateUsers(() => {
-      const newUsers = users.filter(person => person.name !== name)
+      const newUsers = users.filter(person => person.id !== id)
       return newUsers
     })
   }
 
-  function addInventory(item) {
-    const newId = inventory[inventory.length - 1].id + 1
-    const {name, quantity, category, image} = item
-    const newItem = {
-      id: newId,
-      name,
-      quantity,
-      quantityAvailable: quantity,
-      category,
-      image
-    }
+  function addInventory(newItem) {
     updateInventory(() => {
       const newItems = [...inventory, newItem]
       return newItems
     })
   }
 
-  function deleteInventory(name) {
+  function deleteInventory(id) {
+    const updatedUsers = users.map(user => {
+      if (user.checkedOut.hasOwnProperty(`${id}`)) {
+        delete user.checkedOut[id]
+        return user
+      }
+      return user
+    })
+    updateUsers(updatedUsers)
     updateInventory(() => {
-      const newItems = inventory.filter(item => item.name !== name)
+      const newItems = inventory.filter(item => item.id !== id)
       return newItems
     })
   }

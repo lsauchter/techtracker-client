@@ -7,6 +7,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import ContextInventory from './ContextInventory'
+import {findInventory} from './helper'
 import './AdminInventory.css'
 
 export default function AdminInventory() {
@@ -15,7 +16,7 @@ export default function AdminInventory() {
     const [confirmationForm, updateConfirmationForm] = useState('')
 
     const inventoryNames = inventory.map(item => {
-        return <option key={item.id} value={item.name}>{item.name}</option>
+        return <option key={item.id} value={item.id}>{item.name}</option>
     })
 
     const addInventorySubmit = (e) => {
@@ -45,11 +46,11 @@ export default function AdminInventory() {
             const newItem = {
                 id: response.id,
                 name: response.name,
-                quantity: response.quantity,
+                quantity: Number(response.quantity),
+                quantityAvailable: Number(response.quantityAvailable),
                 category: response.category,
                 image: response.image
             }
-            console.log(newItem)
             addInventory(newItem)
             confirmationText('addItem', {name: item.name, method: 'added'})
         })
@@ -58,11 +59,8 @@ export default function AdminInventory() {
 
     const deleteInventorySubmit = e => {
         e.preventDefault()
-        const name = e.target.item.value
-        const item = inventory.find(inv => inv.name === name)
-
-        console.log(name, item)
-
+        const id = e.target.item.value
+        const item = findInventory(inventory, id)
         const url = `https://boiling-bayou-06844.herokuapp.com/api/inventory?id=${item.id}`
         e.target.reset();
 
@@ -74,7 +72,7 @@ export default function AdminInventory() {
             if (!response.ok) {
                 return response.json().then(error => {throw error})
             }
-            deleteInventory(item.name)
+            deleteInventory(item.id)
             confirmationText('removeItem', {name: item.name, method: 'removed'})
         })
         .catch()
