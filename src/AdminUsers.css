@@ -16,13 +16,24 @@ input[id="addUser"] {
     padding: 10px;
 }
 
+.accordion2:hover {
+    background-color: #fd8204;
+    color: white;
+    transition: all 0.33s ease;
+}
+
 select[id="user"] {
     min-width: 100px;
 }
 
 select:invalid {
     color: grey;
-  }
+}
+
+.plus {
+    font-size: 12pt !important;
+    margin-top: 5px;
+}
 
 @media (max-width: 500px) {
     .userAccordion * {

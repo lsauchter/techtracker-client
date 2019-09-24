@@ -6,6 +6,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ContextInventory from './ContextInventory'
 import {findUser} from './helper'
 import './AdminUsers.css'
@@ -14,7 +15,31 @@ export default function AdminUser() {
     const {users, addUser, deleteUser} = useContext(ContextInventory)
     const [confirmation, updateConfirmation] = useState({})
     const [confirmationForm, updateConfirmationForm] = useState('')
+    const [addIcon, updateAddIcon] = useState('plus')
+    const [addId, updateAddId] = useState('')
+    const [removeIcon, updateRemoveIcon] = useState('plus')
+    const [removeId, updateRemoveId] = useState('')
 
+    function handleClick(uuid) {
+        if (uuid[0] === "add") {
+            updateRemoveId('rotateDown')
+            updateRemoveIcon('plus')
+            updateAddId('rotateUp')
+            return updateAddIcon('minus')
+        }
+        if (uuid[0] === "remove") {
+            updateAddId('rotateDown')
+            updateAddIcon('plus')
+            updateRemoveIcon('minus')
+            return updateRemoveId('rotateUp')
+        }
+        else {
+            updateAddId('rotateDown')
+            updateAddIcon('plus')
+            updateRemoveId('rotateDown')
+            updateRemoveIcon('plus')
+        }
+    }
 
     const userNames = users.map(user => {
         return <option key={user.id} value={user.id}>{user.name}</option>
@@ -96,11 +121,12 @@ export default function AdminUser() {
     }, [timer])
 
     return (
-        <Accordion allowZeroExpanded="true" className="userAccordion">
-            <AccordionItem>
+        <Accordion allowZeroExpanded="true" className="userAccordion" onChange={(uuid) => handleClick(uuid)}>
+            <AccordionItem uuid="add">
                 <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Add User
+                        <FontAwesomeIcon icon={addIcon} id={addId} className="angleIcon plus"/>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -118,10 +144,11 @@ export default function AdminUser() {
                     {(confirmationForm === 'addUser') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
-            <AccordionItem>
+            <AccordionItem uuid="remove">
                 <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Remove User
+                        <FontAwesomeIcon icon={removeIcon} id={removeId} className="angleIcon plus"/>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>

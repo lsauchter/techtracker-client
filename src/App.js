@@ -5,6 +5,8 @@ import CheckIn from './CheckIn'
 import CheckOut from './CheckOut'
 import LandingPage from './LandingPage'
 import NavBar from './NavBar'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import ContextInventory from './ContextInventory'
 import ContextMenu from './ContextMenu'
 import { findUser, findInventory } from './helper'
@@ -15,6 +17,8 @@ function App() {
   const [inventory, updateInventory] = useState([])
   const [confirmation, updateConfirmation] = useState('')
   const [menuOpen, updateMenuOpen] = useState(false)
+
+  library.add(faAngleDown, faPlus, faMinus)
 
   /* handling menu state */
   function handleStateChange(newState) {

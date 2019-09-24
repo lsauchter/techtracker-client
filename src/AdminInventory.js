@@ -7,6 +7,7 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import ContextInventory from './ContextInventory'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {findInventory} from './helper'
 import './AdminInventory.css'
 
@@ -14,6 +15,31 @@ export default function AdminInventory() {
     const {inventory, addInventory, deleteInventory} = useContext(ContextInventory)
     const [confirmation, updateConfirmation] = useState({})
     const [confirmationForm, updateConfirmationForm] = useState('')
+    const [addIcon, updateAddIcon] = useState('plus')
+    const [addId, updateAddId] = useState('')
+    const [removeIcon, updateRemoveIcon] = useState('plus')
+    const [removeId, updateRemoveId] = useState('')
+
+    function handleClick(uuid) {
+        if (uuid[0] === "add") {
+            updateRemoveId('rotateDown')
+            updateRemoveIcon('plus')
+            updateAddId('rotateUp')
+            return updateAddIcon('minus')
+        }
+        if (uuid[0] === "remove") {
+            updateAddId('rotateDown')
+            updateAddIcon('plus')
+            updateRemoveIcon('minus')
+            return updateRemoveId('rotateUp')
+        }
+        else {
+            updateAddId('rotateDown')
+            updateAddIcon('plus')
+            updateRemoveId('rotateDown')
+            updateRemoveIcon('plus')
+        }
+    }
 
     const inventoryNames = inventory.map(item => {
         return <option key={item.id} value={item.id}>{item.name}</option>
@@ -96,11 +122,12 @@ export default function AdminInventory() {
     }, [timer])
 
     return (
-        <Accordion allowZeroExpanded="true" className="inventoryAccordion">
-            <AccordionItem>
+        <Accordion allowZeroExpanded="true" className="inventoryAccordion" onChange={(uuid) => handleClick(uuid)}>
+            <AccordionItem uuid="add">
                 <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Add Items
+                        <FontAwesomeIcon icon={addIcon} id={addId} className="angleIcon plus"/>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -176,10 +203,11 @@ export default function AdminInventory() {
                     {(confirmationForm === 'addItem') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
-            <AccordionItem>
+            <AccordionItem uuid="remove">
                 <AccordionItemHeading className="accordion2">
                     <AccordionItemButton>
                         Remove Items
+                        <FontAwesomeIcon icon={removeIcon} id={removeId} className="angleIcon plus"/>
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>

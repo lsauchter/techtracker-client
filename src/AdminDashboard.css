@@ -18,15 +18,32 @@
     border: 2pt solid #fd8204;
     padding: 10px;
     margin-top:10px;
+    text-align: left;
 }
 
 .dashboard_heading:hover, .dashboard_heading:focus {
     background-color: #fd8204;
     color: white;
+    transition: all 0.33s ease;
 }
 
 .accordion__button {
     outline-offset: 5px;
+}
+
+.angleIcon {
+    position: absolute;
+    right: 15%;
+}
+
+#rotateUp {
+    transition: transform 0.33s ease;
+    transform: rotate(180deg);
+}
+
+#rotateDown {
+    transition: transform 0.33s ease;
+    transform: rotate(0deg)
 }
 
 @media (max-width: 500px) {

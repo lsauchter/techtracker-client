@@ -12,7 +12,7 @@ export default function LandingPage() {
             <Link to="/checkin" className="checkLink"><button className="buttonLink">Check In</button></Link>
         </div>
         <div className="info">
-            <p>Thanks for using TechTracker! Check out the admin dashboard to see how the app data is maintained.
+            <p>Thanks for using TechTracker! Click the links above to enter your name and select the items you're checking in or out. Head to the admin dashboard to see how the app data is maintained.
             </p>
         </div>
         <div>

@@ -11,11 +11,12 @@ export default function AdminViewItems() {
             const ids = Object.keys(user.checkedOut)
             const itemList = ids.map(item => {
                 const name = findInventory(inventory, item).name
-                return `${user.checkedOut[Number(item)]} ${name}`
-            }).join(', ')
+                return <li key={item}>{user.checkedOut[Number(item)]} {name}</li>
+            })
             
             return <div className="checkedOutItem" key={user.id}>
-                <p>{user.name} has {itemList} checked out</p>
+                <p className="viewListUser">{user.name} has checked out</p>
+                <ul className="viewList">{itemList}</ul>
             </div>
         }
         return true
