@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Route, Link} from 'react-router-dom'
+import {Route, Link, Switch} from 'react-router-dom'
 import AdminDashboard from './AdminDashboard'
 import AdminLogin from './AdminLogin'
 import CheckIn from './CheckIn'
@@ -207,7 +207,7 @@ function App() {
 
   function renderRoutes() {
     return (
-      <>
+      <Switch>
         <Route
           exact path="/"
           component={LandingPage}
@@ -228,7 +228,8 @@ function App() {
           path="/checkout"
           component={CheckOut}
         />
-      </>
+        <Route render={() => <h1>Page not found</h1>} />
+      </Switch>
     )
   }
 
