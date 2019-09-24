@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import {Route, Link} from 'react-router-dom';
-import AdminDashboard from './AdminDashboard';
-import AdminLogin from './AdminLogin';
-import CheckIn from './CheckIn';
-import CheckOut from './CheckOut';
-import LandingPage from './LandingPage';
-import ContextInventory from './ContextInventory';
-import { findUser, findInventory } from './helper';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import {Route, Link} from 'react-router-dom'
+import AdminDashboard from './AdminDashboard'
+import AdminLogin from './AdminLogin'
+import CheckIn from './CheckIn'
+import CheckOut from './CheckOut'
+import LandingPage from './LandingPage'
+import NavBar from './NavBar'
+import ContextInventory from './ContextInventory'
+import ContextMenu from './ContextMenu'
+import { findUser, findInventory } from './helper'
+import './App.css'
 
 function App() {
-  const [users, updateUsers] = useState([]);
-  const [inventory, updateInventory] = useState([]);
+  const [users, updateUsers] = useState([])
+  const [inventory, updateInventory] = useState([])
   const [confirmation, updateConfirmation] = useState('')
+  const [menuOpen, updateMenuOpen] = useState(false)
+
+  /* handling menu state */
+  function handleStateChange(newState) {
+    updateMenuOpen(newState.isOpen)
+  }
+
+  function closeMenu() {
+    updateMenuOpen(false)
+  }
 
   /* initial data fetch */
   useEffect(() => {
@@ -176,7 +188,7 @@ function App() {
     })
   }
 
-  const contextValue = {
+  const contextValueInventory = {
     users,
     inventory,
     checkForm,
@@ -185,6 +197,12 @@ function App() {
     deleteUser,
     addInventory,
     deleteInventory
+  }
+
+  const contextValueMenu = {
+    isMenuOpen: menuOpen,
+    handleStateChange,
+    closeMenu
   }
 
   function renderRoutes() {
@@ -215,15 +233,15 @@ function App() {
   }
 
   return (
-    <ContextInventory.Provider value={contextValue}>
+    <ContextInventory.Provider value={contextValueInventory}>
     <div className="App">
       <header className="App_header">
+        <ContextMenu.Provider value={contextValueMenu}>
+          <NavBar handleStateChange={handleStateChange} />
+        </ContextMenu.Provider>
         <h1 className="title_header">
           <Link to="/" className="title">TechTracker</Link>
         </h1>
-        <Link to="/admin/login" className="adminLink">
-            <button className="admin">Admin</button>
-        </Link>
       </header>
       <main className="App_main">
         {renderRoutes()}
