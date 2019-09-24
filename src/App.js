@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {Route, Link, Switch} from 'react-router-dom'
 import AdminDashboard from './AdminDashboard'
-import AdminLogin from './AdminLogin'
 import CheckIn from './CheckIn'
 import CheckOut from './CheckOut'
 import LandingPage from './LandingPage'
@@ -213,11 +212,7 @@ function App() {
           component={LandingPage}
         />
         <Route
-          path="/admin/login"
-          component={AdminLogin}
-        />
-        <Route
-          path="/admin/dashboard"
+          path="/admin"
           component={AdminDashboard}
         />
         <Route

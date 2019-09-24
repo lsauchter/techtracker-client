@@ -19,11 +19,11 @@ export default function NavBar() {
                 <Link to="/checkin" onClick={() => closeMenu()}>
                     Check In
                 </Link>
-                <Link to="/admin/login" onClick={() => closeMenu()}>
-                    Admin Login
+                <Link to="/admin" onClick={() => closeMenu()}>
+                    Admin Dashboard
                 </Link>
             </Menu>
-            <Link to="/admin/login" className="adminLink">
+            <Link to="/admin" className="adminLink">
             <button className="admin">Admin</button>
             </Link>
         </nav>
