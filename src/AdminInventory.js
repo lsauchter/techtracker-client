@@ -19,6 +19,7 @@ export default function AdminInventory() {
     const [addId, updateAddId] = useState('')
     const [removeIcon, updateRemoveIcon] = useState('plus')
     const [removeId, updateRemoveId] = useState('')
+    const [error, updateError] = useState(null)
 
     function handleClick(uuid) {
         if (uuid[0] === "add") {
@@ -47,6 +48,7 @@ export default function AdminInventory() {
 
     const addInventorySubmit = (e) => {
         e.preventDefault()
+        updateError(null)
         const {name, quantity, category, image} = e.target
         const item = {
             name: name.value,
@@ -80,11 +82,14 @@ export default function AdminInventory() {
             addInventory(newItem)
             confirmationText('addItem', {name: item.name, method: 'added'})
         })
-        .catch()
+        .catch(error => {
+            updateError(error.message)
+        })
     }
 
     const deleteInventorySubmit = e => {
         e.preventDefault()
+        updateError(null)
         const id = e.target.item.value
         const item = findInventory(inventory, id)
         const url = `https://boiling-bayou-06844.herokuapp.com/api/inventory?id=${item.id}`
@@ -101,7 +106,9 @@ export default function AdminInventory() {
             deleteInventory(item.id)
             confirmationText('removeItem', {name: item.name, method: 'removed'})
         })
-        .catch()
+        .catch(error => {
+            updateError(error.message)
+        })
     }
 
     let timer
@@ -227,6 +234,9 @@ export default function AdminInventory() {
                     {(confirmationForm === 'removeItem') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
+            <div className='error' role='alert'>
+                {error && <p>{error}</p>}
+            </div>
         </Accordion>
     )
 }

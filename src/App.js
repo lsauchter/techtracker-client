@@ -17,6 +17,7 @@ function App() {
   const [inventory, updateInventory] = useState([])
   const [confirmation, updateConfirmation] = useState('')
   const [menuOpen, updateMenuOpen] = useState(false)
+  const [error, updateError] = useState(null)
 
   library.add(faAngleDown, faPlus, faMinus)
 
@@ -31,19 +32,20 @@ function App() {
 
   /* initial data fetch */
   useEffect(() => {
+    updateError(null)
     const userURL = 'https://boiling-bayou-06844.herokuapp.com/api/users'
     const inventoryURL = 'https://boiling-bayou-06844.herokuapp.com/api/inventory'
     const checkoutURL = 'https://boiling-bayou-06844.herokuapp.com/api/users/checkout'
     Promise.all([fetch(userURL), fetch(inventoryURL), fetch(checkoutURL)])
       .then(([userRes, inventoryRes, checkoutRes]) => {
         if (!userRes) {
-          return userRes.json().then(error => Promise.reject(error))
+          return userRes.json().then(error => {throw error})
         }
         if (!inventoryRes) {
-          return inventoryRes.json().then(error => Promise.reject(error))
+          return inventoryRes.json().then(error => {throw error})
         }
         if (!checkoutRes) {
-          return inventoryRes.json().then(error => Promise.reject(error))
+          return inventoryRes.json().then(error => {throw error})
         }
         return Promise.all([userRes.json(), inventoryRes.json(), checkoutRes.json()])
       })
@@ -68,6 +70,9 @@ function App() {
           return updatedUser
         })
         updateUsers(completeUsers)
+      })
+      .catch(error => {
+        updateError(error.message)
       })
   }, [])
 
@@ -245,6 +250,9 @@ function App() {
       </header>
       <main className="App_main">
         {renderRoutes()}
+        <div className='error' role='alert'>
+          {error && <p>{error}</p>}
+        </div>
       </main>
     </div>
     </ContextInventory.Provider>

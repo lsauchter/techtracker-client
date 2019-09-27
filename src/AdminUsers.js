@@ -19,6 +19,7 @@ export default function AdminUser() {
     const [addId, updateAddId] = useState('')
     const [removeIcon, updateRemoveIcon] = useState('plus')
     const [removeId, updateRemoveId] = useState('')
+    const [error, updateError] = useState(null)
 
     function handleClick(uuid) {
         if (uuid[0] === "add") {
@@ -47,6 +48,7 @@ export default function AdminUser() {
 
     const addUserSubmit = (e) => {
         e.preventDefault()
+        updateError(null)
         const name = e.target.addUser.value
         const userData = {
             'name': name
@@ -73,11 +75,14 @@ export default function AdminUser() {
             addUser(newUser)
             confirmationText('addUser', {name: response.name, method: 'added'})
         })
-        .catch()
+        .catch(error => {
+            updateError(error.message)
+        })
     }
 
     const deleteUserSubmit = (e) => {
         e.preventDefault()
+        updateError(null)
         const id = e.target.user.value
         const user = findUser(users, id)
         let checkout = false
@@ -100,7 +105,9 @@ export default function AdminUser() {
             deleteUser(id)
             confirmationText('removeUser', {name: user.name, method: 'removed'})
         })
-        .catch()
+        .catch(error => {
+            updateError(error.message)
+        })
     }
 
     let timer
@@ -166,6 +173,9 @@ export default function AdminUser() {
                     {(confirmationForm === 'removeUser') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
+            <div className='error' role='alert'>
+                {error && <p>{error}</p>}
+            </div>
         </Accordion>
     )
 }

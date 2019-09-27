@@ -87,7 +87,9 @@ export default function CheckOut(props) {
                 checkForm(userForm.id, formData, 'checked out')
                 props.history.push('/')
             })
-            .catch()
+            .catch(error => {
+                updateErrorMessage(() => <p>{error.message}</p>)
+            })
         }
     }
 

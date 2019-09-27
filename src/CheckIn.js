@@ -97,7 +97,9 @@ export default function CheckIn(props) {
                         }
                         return Promise.resolve('ok')
                     })
-                    .catch() 
+                    .catch(error => {
+                        updateErrorMessage(() => <p>{error.message}</p>)
+                    }) 
                 }
                 else {
                     const checkinData = {
@@ -116,7 +118,9 @@ export default function CheckIn(props) {
                         }
                         return Promise.resolve('ok')
                     })
-                    .catch() 
+                    .catch(error => {
+                        updateErrorMessage(() => <p>{error.message}</p>)
+                    }) 
                 }
             })
             checkForm(userForm.id, formData, 'checked in')
