@@ -7,5 +7,5 @@ This app was built using React. Styling follows [Museum of Life and Science](htt
 ## Live Page
 [https://techtracker.lsauchter.now.sh/](https://techtracker.lsauchter.now.sh/)
 
-<img src="public/ScreenShot1.png" style="max-width:75%"/>
-<img src="public/ScreenShot2.png" style="max-width:75%"/>
+<img src="public/ScreenShot1.png" width="640"/>
+<img src="public/ScreenShot2.png" width="640"/>
