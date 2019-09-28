@@ -15,7 +15,9 @@
 }
 
 .addFormContainer {
-    margin: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     display: table;
     width: auto;
 }

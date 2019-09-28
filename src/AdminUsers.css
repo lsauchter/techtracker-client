@@ -24,6 +24,7 @@ input[id="addUser"] {
 
 select[id="user"] {
     min-width: 100px;
+    margin-top: 20px;
 }
 
 select:invalid {
