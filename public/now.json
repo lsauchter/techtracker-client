@@ -16,8 +16,8 @@
           "dest": "/index.html"
         },
         {
-          "src": "^/static/navImage.jpeg$",
-          "dest": "/static/navImage.jpeg"
+          "src": "/navImage.jpeg",
+          "dest": "/navImage.jpeg"
         }
     ]
   }
