@@ -8,7 +8,7 @@ export default function NavBar() {
     const {isMenuOpen, handleStateChange, closeMenu} = useContext(ContextMenu)
 
     return (
-        <nav>
+        <nav role="navigation">
             <Menu disableAutoFocus isOpen={isMenuOpen} onStateChange={(state) => handleStateChange(state)}>
                 <Link to="/" onClick={() => closeMenu()}>
                     Home

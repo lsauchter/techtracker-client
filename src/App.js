@@ -239,8 +239,7 @@ function App() {
 
   return (
     <ContextInventory.Provider value={contextValueInventory}>
-    <div className="App">
-      <header className="App_header">
+      <header className="App_header" role="banner">
         <ContextMenu.Provider value={contextValueMenu}>
           <NavBar handleStateChange={handleStateChange} />
         </ContextMenu.Provider>
@@ -248,13 +247,12 @@ function App() {
           <Link to="/" className="title">TechTracker</Link>
         </h1>
       </header>
-      <main className="App_main">
+      <main className="App_main" role="main">
         {renderRoutes()}
         <div className='error' role='alert'>
           {error && <p>{error}</p>}
         </div>
       </main>
-    </div>
     </ContextInventory.Provider>
   );
 }
