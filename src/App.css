@@ -7,7 +7,7 @@ body {
 
 .App_header {
   position: absolute;
-  background: url('./navImage.jpeg') no-repeat;
+  background: url('navImage.jpeg') no-repeat;
   background-position-y: 15%;
   background-size: cover;
   top: 0;
