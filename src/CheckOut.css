@@ -9,10 +9,10 @@ button {
   padding: 10px;
   background-color: rgb(253, 130, 4, 0.85);
   color: white;
-  position: fixed;
+  position: absolute;
   width: 100%;
   left: 0;
-  top: 200px;
+  top: 70px;
   font-weight: normal;
 }
 

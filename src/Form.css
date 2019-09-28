@@ -48,4 +48,8 @@ legend {
   .checkForm * {
     font-size: 16pt;
   }
+
+  .emptyForm {
+    width: auto;
+  }
 }

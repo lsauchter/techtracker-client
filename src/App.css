@@ -6,10 +6,8 @@
 }
 
 .App_header {
-  position: fixed;
-  /* background: url('https://images.unsplash.com/photo-1544816565-c199d6f5d2d3') no-repeat; */
-  /* background-position-y: 75%; */
-  background: url('https://images.unsplash.com/photo-1555532538-dcdbd01d373d') no-repeat;
+  position: absolute;
+  background: url('/navImage.jpeg') no-repeat;
   background-position-y: 15%;
   background-size: cover;
   top: 0;
@@ -29,7 +27,7 @@
 }
 
 .title_header {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 70px;
   background-color: rgb(253, 130, 4, .85);

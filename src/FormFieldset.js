@@ -3,7 +3,7 @@ import ContextForm from './ContextForm';
 import './FormFieldset.css';
 
 export default function FormFieldset(props) {
-    const {category, inventory} = props
+    const {category, inventory, flexOne} = props
     const {inventoryNumber, inventoryKey, inventoryQuantity} = useContext(ContextForm)
 
     function options(quantity) {
@@ -60,7 +60,7 @@ export default function FormFieldset(props) {
     }
 
     return (
-        <fieldset className={category + ' flexField'}>
+        <fieldset className={category + ' flexField ' + flexOne}>
             <legend>{category}</legend>
             <ul className="flex">
                 {items(inventory)}

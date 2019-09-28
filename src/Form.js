@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import ContextForm from './ContextForm';
 import FormFieldset from './FormFieldset';
@@ -9,10 +9,28 @@ export default function Form() {
     const [touched, updateTouch] = useState(false)
     const computers = inventory.filter(item => item.category === 'computer')
     const tablets = inventory.filter(item => item.category === 'tablet')
+    const [compClass, updateCompClass] = useState('')
+    const [tabClass, updateTabClass] = useState('')
     
     const names = users.map(user => {
         return <option key={user.id}>{user.name}</option>
     })
+
+    useEffect(() => {
+        if (computers.length === 0) {
+            updateTabClass('flexOne')
+        }
+        if (tablets.length === 0) {
+            updateCompClass('flexOne')
+        }
+        if (computers.length > 0) {
+            updateTabClass('')
+        }
+        if (tablets.length > 0) {
+            updateCompClass('')
+        }
+    }, [computers, tablets])
+    
 
     const EmptyForm = () => { 
         return (<div className="emptyForm">
@@ -46,8 +64,8 @@ export default function Form() {
                 </select>
             </fieldset>
             <div className="fieldsetFlex">
-            {(touched) && (computers.length > 0) && <FormFieldset category="Computers" inventory={computers}/>}
-            {(touched) && (tablets.length > 0) && <FormFieldset category="Tablets" inventory={tablets}/>}
+            {(touched) && (computers.length > 0) && <FormFieldset category="Computers" inventory={computers} flexOne={compClass}/>}
+            {(touched) && (tablets.length > 0) && <FormFieldset category="Tablets" inventory={tablets} flexOne={tabClass}/>}
             {(touched) && (computers.length === 0) && (tablets.length === 0) && <EmptyForm />}
             </div>
        </form>

@@ -16,6 +16,10 @@ fieldset {
   width: 45%;
 }
 
+.flexOne {
+  width: 100% !important;
+}
+
 li {
   list-style: none;
   padding: 5px;
