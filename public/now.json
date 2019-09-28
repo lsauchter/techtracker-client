@@ -16,7 +16,7 @@
           "dest": "/index.html"
         },
         {
-          "src": "^/navImage$",
+          "src": "/navImage",
           "dest": "/navImage"
         }
     ]
