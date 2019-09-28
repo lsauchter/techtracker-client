@@ -2,7 +2,7 @@
 An application for tracking inventory status built for the Museum of Life and Science
 
 ## Technology
-This app was built using React. Styling follows [Museum of Life and Science](https://lifeandscience.org) style guide.
+This app was built using CSS and React. Styling follows [Museum of Life and Science](https://lifeandscience.org) style guide.
 
 ## Live Page
 [https://techtracker.lsauchter.now.sh/](https://techtracker.lsauchter.now.sh/)
