@@ -14,6 +14,7 @@ input[id="addUser"] {
     background-color: #EDECEB;
     border: 2pt solid #fd8204;
     padding: 10px;
+    position: relative;
 }
 
 .accordion2:hover {
@@ -33,7 +34,6 @@ select:invalid {
 
 .plus {
     font-size: 12pt !important;
-    margin-top: 5px;
 }
 
 @media (max-width: 500px) {

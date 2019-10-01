@@ -3,6 +3,11 @@
     padding-left: 10%;
 }
 
+.accordion {
+    max-width: 700px;
+    margin: auto;
+}
+
 .accordion__item {
     cursor: pointer;
 }
@@ -19,6 +24,7 @@
     padding: 10px;
     margin-top:10px;
     text-align: left;
+    position: relative;
 }
 
 .dashboard_heading:hover, .dashboard_heading:focus {
@@ -33,7 +39,7 @@
 
 .angleIcon {
     position: absolute;
-    right: 15%;
+    right: 5%;
 }
 
 #rotateUp {
