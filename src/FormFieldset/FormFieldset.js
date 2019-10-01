@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import ContextForm from './ContextForm';
+import ContextForm from '../ContextForm';
 import './FormFieldset.css';
 
 export default function FormFieldset(props) {

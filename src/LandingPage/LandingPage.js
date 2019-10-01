@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import ContextInventory from './ContextInventory';
+import ContextInventory from '../ContextInventory';
 import './LandingPage.css';
 
 export default function LandingPage() {

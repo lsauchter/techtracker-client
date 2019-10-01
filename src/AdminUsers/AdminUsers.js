@@ -7,8 +7,8 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import ContextInventory from './ContextInventory'
-import {findUser} from './helper'
+import ContextInventory from '../ContextInventory'
+import {findUser} from '../helper'
 import './AdminUsers.css'
 
 export default function AdminUser() {

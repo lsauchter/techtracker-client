@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ContextInventory from './ContextInventory';
-import ContextForm from './ContextForm';
-import Form from './Form';
-import {findUser, findUserByName} from './helper'
+import ContextInventory from '../ContextInventory';
+import ContextForm from '../ContextForm';
+import Form from '../Form/Form';
+import {findUser, findUserByName} from '../helper'
 import './CheckIn.css';
 
 export default function CheckIn(props) {

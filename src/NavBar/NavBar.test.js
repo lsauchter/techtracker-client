@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from './NavBar';
-import ContextMenu from './ContextMenu';
+import ContextMenu from '../ContextMenu';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

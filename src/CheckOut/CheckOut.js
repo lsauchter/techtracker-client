@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import ContextInventory from './ContextInventory';
-import ContextForm from './ContextForm';
-import Form from './Form';
-import {findUserByName} from './helper'
+import ContextInventory from '../ContextInventory';
+import ContextForm from '../ContextForm';
+import Form from '../Form/Form';
+import {findUserByName} from '../helper'
 import './CheckOut.css';
 
 export default function CheckOut(props) {

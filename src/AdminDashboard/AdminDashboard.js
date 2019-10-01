@@ -7,9 +7,9 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import AdminUsers from './AdminUsers'
-import AdminInventory from './AdminInventory'
-import AdminViewItems from './AdminViewItems'
+import AdminUsers from '../AdminUsers/AdminUsers'
+import AdminInventory from '../AdminInventory/AdminInventory'
+import AdminViewItems from '../AdminViewItems/AdminViewItems'
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {

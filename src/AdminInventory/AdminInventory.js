@@ -6,9 +6,9 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion'
-import ContextInventory from './ContextInventory'
+import ContextInventory from '../ContextInventory'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {findInventory} from './helper'
+import {findInventory} from '../helper'
 import './AdminInventory.css'
 
 export default function AdminInventory() {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Link} from 'react-router-dom';
-import ContextForm from './ContextForm';
-import FormFieldset from './FormFieldset';
+import ContextForm from '../ContextForm';
+import FormFieldset from '../FormFieldset/FormFieldset';
 import './Form.css';
 
 export default function Form() {

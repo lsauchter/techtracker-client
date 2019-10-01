@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
-import ContextInventory from './ContextInventory'
-import {findInventory} from './helper'
+import ContextInventory from '../ContextInventory'
+import {findInventory} from '../helper'
 import './AdminViewItems.css'
 
 export default function AdminViewItems() {
