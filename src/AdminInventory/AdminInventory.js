@@ -19,7 +19,6 @@ export default function AdminInventory() {
     const [addId, updateAddId] = useState('')
     const [removeIcon, updateRemoveIcon] = useState('plus')
     const [removeId, updateRemoveId] = useState('')
-    const [error, updateError] = useState(null)
 
     function handleClick(uuid) {
         if (uuid[0] === "add") {
@@ -48,7 +47,7 @@ export default function AdminInventory() {
 
     const addInventorySubmit = (e) => {
         e.preventDefault()
-        updateError(null)
+        updateConfirmationForm(null)
         const {name, quantity, category, image} = e.target
         const item = {
             name: name.value,
@@ -56,6 +55,20 @@ export default function AdminInventory() {
             category: category.value,
             image: image.value
         }
+
+        for (const [key, value] of Object.entries(item)) {
+            if (key === 'quantity') {
+                if (value === 0) {
+                    return confirmationText('addItem', `Quantity must be greater than zero`)
+                }
+            }
+            if (key === 'name' || key === 'image') {
+                if (value.trim().length === 0) {
+                    return confirmationText('addItem', `Include inventory ${key} to add item`)
+                }
+            }
+        }  
+        
         const url = 'https://boiling-bayou-06844.herokuapp.com/api/inventory'
         e.target.reset();
         
@@ -80,16 +93,16 @@ export default function AdminInventory() {
                 image: response.image
             }
             addInventory(newItem)
-            confirmationText('addItem', {name: item.name, method: 'added'})
+            confirmationText('addItem', `${item.name} added`)
         })
         .catch(error => {
-            updateError(error.message)
+            confirmationText('addItem', error.message)
         })
     }
 
     const deleteInventorySubmit = e => {
         e.preventDefault()
-        updateError(null)
+        updateConfirmationForm(null)
         const id = e.target.item.value
         const item = findInventory(inventory, id)
         const url = `https://boiling-bayou-06844.herokuapp.com/api/inventory?id=${item.id}`
@@ -104,25 +117,27 @@ export default function AdminInventory() {
                 return response.json().then(error => {throw error})
             }
             deleteInventory(item.id)
-            confirmationText('removeItem', {name: item.name, method: 'removed'})
+            confirmationText('removeItem', `${item.name} removed`)
         })
         .catch(error => {
-            updateError(error.message)
+            confirmationText('removeItem', error.message)
         })
     }
 
     let timer
 
-    function confirmationText(form, data) {
+    //handles confirmation and error alerts//
+    function confirmationText(form, text) {
         clearTimeout(timer)
         updateConfirmation(() => {
             return (<p className="confirmation" role='alert'>
-              {data.name} {data.method}</p>
+              {text}</p>
             )}
             )
         updateConfirmationForm(form)
         timer = setTimeout(() => {updateConfirmation('')}, 5000);
     }
+
 
     useEffect(() => {
         return clearTimeout(timer)
@@ -234,9 +249,6 @@ export default function AdminInventory() {
                     {(confirmationForm === 'removeItem') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
-            <div className='error' role='alert'>
-                {error && <p>{error}</p>}
-            </div>
         </Accordion>
     )
 }

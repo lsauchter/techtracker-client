@@ -19,7 +19,6 @@ export default function AdminUser() {
     const [addId, updateAddId] = useState('')
     const [removeIcon, updateRemoveIcon] = useState('plus')
     const [removeId, updateRemoveId] = useState('')
-    const [error, updateError] = useState(null)
 
     function handleClick(uuid) {
         if (uuid[0] === "add") {
@@ -48,8 +47,13 @@ export default function AdminUser() {
 
     const addUserSubmit = (e) => {
         e.preventDefault()
-        updateError(null)
+        updateConfirmationForm(null)
         const name = e.target.addUser.value
+
+        if (name.trim().length === 0) {
+            return confirmationText('addUser', 'Enter a name to add user')
+        }
+
         const userData = {
             'name': name
         }
@@ -73,16 +77,16 @@ export default function AdminUser() {
                 checkedOut: {}
             }
             addUser(newUser)
-            confirmationText('addUser', {name: response.name, method: 'added'})
+            confirmationText('addUser', `${newUser.name} added`)
         })
         .catch(error => {
-            updateError(error.message)
+            confirmationText('addUser', error.message)
         })
     }
 
     const deleteUserSubmit = (e) => {
         e.preventDefault()
-        updateError(null)
+        updateConfirmationForm(null)
         const id = e.target.user.value
         const user = findUser(users, id)
         let checkout = false
@@ -103,22 +107,22 @@ export default function AdminUser() {
                 return response.json().then(error => {throw error})
             }
             deleteUser(id)
-            confirmationText('removeUser', {name: user.name, method: 'removed'})
+            confirmationText('removeUser', `${user.name} removed`)
         })
         .catch(error => {
-            updateError(error.message)
+            confirmationText('removeUser', error.message)
         })
     }
 
     let timer
 
-    function confirmationText(form, data) {
+    function confirmationText(form, text) {
         clearTimeout(timer)
         updateConfirmation(() => {
             return (<p className="confirmation" role='alert'>
-              {data.name} {data.method}</p>
+              {text}</p>
             )}
-            )
+        )
         updateConfirmationForm(form)
         timer = setTimeout(() => {updateConfirmation('')}, 5000);
     }
@@ -173,9 +177,6 @@ export default function AdminUser() {
                     {(confirmationForm === 'removeUser') && confirmation}
                 </AccordionItemPanel>
             </AccordionItem>
-            <div className='error' role='alert'>
-                {error && <p>{error}</p>}
-            </div>
         </Accordion>
     )
 }
