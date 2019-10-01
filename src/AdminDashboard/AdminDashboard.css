@@ -4,7 +4,7 @@
 }
 
 .accordion {
-    max-width: 700px;
+    max-width: 600px;
     margin: auto;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .dashboard_heading {
-    font-size: 18px;
+    font-size: 16pt;
     border: 2pt solid #fd8204;
     padding: 10px;
     margin-top:10px;
@@ -52,8 +52,8 @@
     transform: rotate(0deg)
 }
 
-@media (max-width: 500px) {
+@media (min-width: 500px) {
     .dashboard_heading {
-        font-size: 16pt;
+        font-size: 18px;
       }
 }

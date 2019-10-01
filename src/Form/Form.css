@@ -1,8 +1,12 @@
+.checkForm * {
+  font-size: 16pt;
+}
+
 .checkForm {
     padding-top: 50px;
     max-width: 700px;
     margin: auto;
-  }
+}
 
 .namesFieldset {
   padding: 15px 20px 20px;
@@ -22,10 +26,7 @@ legend {
 }
 
 .fieldsetFlex {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: block;
 }
 
 .names:invalid {
@@ -35,23 +36,27 @@ legend {
 .emptyForm {
   padding: 5px 15px 15px;
   border: 2px groove #c0c0c0;
-  width: 100%;
+  width: auto;
 }
 
 .checkOutLink {
   width: 200px;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 500px) {
   .fieldsetFlex {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .checkForm * {
-    font-size: 16pt;
+    font-size: 12pt;
   }
 
   .emptyForm {
-    width: auto;
+    width: 100%;
   }
+
 }

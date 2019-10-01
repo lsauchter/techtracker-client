@@ -1,15 +1,19 @@
+.userAccordion * {
+    font-size: 16pt;
+  }
+
 .user {
     display: inline;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 input[id="addUser"] {
     height: 24px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .accordion2 {
-    font-size: 12pt;
+    font-size: 16pt;
     font-weight: normal;
     background-color: #EDECEB;
     border: 2pt solid #fd8204;
@@ -36,18 +40,18 @@ select:invalid {
     font-size: 12pt !important;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 500px) {
     .userAccordion * {
-        font-size: 16pt;
+        font-size: 12pt;
       }
 
     input[id="addUser"] {
         height: 24px;
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .user {
         display: inline;
-        margin: 10px;
+        margin-left: 10px;
     }
 }

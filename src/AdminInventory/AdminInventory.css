@@ -1,13 +1,9 @@
+.inventoryAccordion * {
+    font-size: 16pt;
+  }
+
 .item {
     margin: 15px
-}
-
-.accordion__heading {
-    font-size: 12pt;
-    font-weight: bolder;
-    background-color: lightgrey;
-    border: 2pt solid white;
-    padding: 10px;
 }
 
 .addForm {
@@ -20,6 +16,12 @@
     margin-right: auto;
     display: table;
     width: auto;
+}
+
+.addFormContainer input {
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 table label {
@@ -36,23 +38,23 @@ select[id="category"] {
 
 select[id="item"] {
     min-width: 135px;
+    margin-top: 15px;
 }
 
-@media (max-width: 500px) {
+.left {
+    text-align: left;
+}
+
+@media (min-width: 500px) {
     .inventoryAccordion * {
-        font-size: 16pt;
+        font-size: 12pt;
       }
     
     select[id="item"] {
-        margin-top: 15px;
+        margin-top: 0px;
     }
 
     .left {
-        text-align: left;
-    }
-    
-    .addFormContainer input {
-        padding: 0;
-        width: 100%;
+        text-align: center;
     }
 }

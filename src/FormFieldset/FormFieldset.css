@@ -13,7 +13,7 @@ fieldset {
 
 .flexField {
   margin-top: 10px;
-  width: 45%;
+  width: auto;
 }
 
 .flexOne {
@@ -22,7 +22,7 @@ fieldset {
 
 li {
   list-style: none;
-  padding: 5px;
+  padding: 0;
 }
 
 input[type="checkbox"] {
@@ -59,22 +59,19 @@ img {
   margin: auto;
 }
 
-@media (max-width: 700px) {
+@media (min-width: 500px) {
   .flexField {
     width: 100%;
   }
 
   li {
-    padding: 0;
+    padding: 5px;
   }
 }
 
-@media (max-width: 500px) {
+@media (min-width: 700px) {
   .flexField {
-    width: auto;
+    width: 45%;
   }
 
-  li {
-    padding: 0;
-  }
 }
