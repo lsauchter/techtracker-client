@@ -64,7 +64,7 @@ export default function AdminInventory() {
             }
             if (key === 'name' || key === 'image') {
                 if (value.trim().length === 0) {
-                    return confirmationText('addItem', `Include inventory ${key} to add item`)
+                    return confirmationText('addItem', `Must include inventory ${key} to add item`)
                 }
             }
         }  
