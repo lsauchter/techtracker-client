@@ -105,7 +105,7 @@ export default function CheckIn(props) {
                     const checkinData = {
                         user_id: userForm.id,
                         inventory_id: item,
-                        quantity: userForm.checkOut[item]
+                        quantity: userForm.checkedOut[item]
                     }
                     fetch(url, {
                     method: 'PATCH',
