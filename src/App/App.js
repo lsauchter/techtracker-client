@@ -92,6 +92,11 @@ function App() {
 
   function checkOutUser(user, data) {
     const userToUpdate = findUser(users, user)
+    Object.keys(data).forEach(dataKey => {
+      if (Object.keys(userToUpdate.checkedOut).includes(dataKey)) {
+        data[dataKey] = (Number(data[dataKey]) + Number(userToUpdate.checkedOut[dataKey]))
+      }
+    })
     updateUsers(() => {
       userToUpdate.checkedOut = {
         ...userToUpdate.checkedOut,
@@ -149,7 +154,7 @@ function App() {
     const name = findUser(users, user).name
     updateConfirmation(() => {
     return (<p className="confirmation" role='alert'>
-      {name} {checkMethod} {items}</p>
+      {name} has {checkMethod} {items}</p>
     )}
     )
     timer = setTimeout(() => {updateConfirmation('')}, 5000);
