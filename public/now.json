@@ -1,7 +1,7 @@
 {
     "version": 2,
     "name": "techtracker",
-    "alias": "techtracker.lsauchter",
+    "alias": "techtracker.lsauchter.now.sh",
     "routes": [
         {
           "src": "^/static/(.*)",
