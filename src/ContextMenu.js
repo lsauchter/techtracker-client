@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const ContextMenu = React.createContext({
-    isMenuOpen: '',
-    stateChangeHandler: () => {},
-    closeMenu: () => {}
-})
+  isMenuOpen: "",
+  stateChangeHandler: () => {},
+  closeMenu: () => {}
+});
 
-export default ContextMenu
+export default ContextMenu;
