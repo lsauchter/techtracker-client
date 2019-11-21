@@ -15,6 +15,9 @@ import ContextInventory from "../ContextInventory";
 import ContextMenu from "../ContextMenu";
 import { findUser, findInventory } from "../helper";
 import "./App.css";
+//polyfills
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 
 function App() {
   const [users, updateUsers] = useState([]);

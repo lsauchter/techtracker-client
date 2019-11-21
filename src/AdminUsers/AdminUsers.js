@@ -10,6 +10,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ContextInventory from "../ContextInventory";
 import { findUser } from "../helper";
 import "./AdminUsers.css";
+//polyfills
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 
 export default function AdminUser() {
   const { users, addUser, deleteUser } = useContext(ContextInventory);
@@ -64,6 +67,7 @@ export default function AdminUser() {
     e.target.reset();
     fetch(url, {
       method: "POST",
+      credentials: "same-origin",
       body: JSON.stringify(userData),
       headers: { "content-type": "application/json" }
     })
@@ -105,6 +109,7 @@ export default function AdminUser() {
 
     fetch(url, {
       method: "DELETE",
+      credentials: "same-origin",
       headers: { "content-type": "application/json" }
     })
       .then(response => {

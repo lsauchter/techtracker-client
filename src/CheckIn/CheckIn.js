@@ -4,6 +4,9 @@ import ContextForm from "../ContextForm";
 import Form from "../Form/Form";
 import { findUser, findUserByName } from "../helper";
 import "./CheckIn.css";
+//polyfills
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 
 export default function CheckIn(props) {
   const { users, inventory, checkForm } = useContext(ContextInventory);
@@ -87,6 +90,7 @@ export default function CheckIn(props) {
           };
           fetch(url, {
             method: "DELETE",
+            credentials: "same-origin",
             body: JSON.stringify(checkinData),
             headers: { "content-type": "application/json" }
           })
@@ -109,6 +113,7 @@ export default function CheckIn(props) {
           };
           fetch(url, {
             method: "PATCH",
+            credentials: "same-origin",
             body: JSON.stringify(checkinData),
             headers: { "content-type": "application/json" }
           })

@@ -4,6 +4,9 @@ import ContextForm from "../ContextForm";
 import Form from "../Form/Form";
 import { findUserByName } from "../helper";
 import "./CheckOut.css";
+//polyfills
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 
 export default function CheckOut(props) {
   const { users, inventory, checkForm } = useContext(ContextInventory);
@@ -75,6 +78,7 @@ export default function CheckOut(props) {
         "https://boiling-bayou-06844.herokuapp.com/api/users/checkout";
       fetch(url, {
         method: "POST",
+        credentials: "same-origin",
         body: JSON.stringify(checkoutData),
         headers: { "content-type": "application/json" }
       })

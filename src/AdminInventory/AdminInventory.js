@@ -10,6 +10,9 @@ import ContextInventory from "../ContextInventory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { findInventory } from "../helper";
 import "./AdminInventory.css";
+//polyfills
+import Promise from "promise-polyfill";
+import "whatwg-fetch";
 
 export default function AdminInventory() {
   const { inventory, addInventory, deleteInventory } = useContext(
@@ -85,6 +88,7 @@ export default function AdminInventory() {
 
     fetch(url, {
       method: "POST",
+      credentials: "same-origin",
       body: JSON.stringify(item),
       headers: { "content-type": "application/json" }
     })
@@ -123,6 +127,7 @@ export default function AdminInventory() {
 
     fetch(url, {
       method: "DELETE",
+      credentials: "same-origin",
       headers: { "content-type": "application/json" }
     })
       .then(response => {
