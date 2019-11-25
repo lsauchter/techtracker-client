@@ -26,6 +26,8 @@ export default function FormFieldset(props) {
       for (let i = 1; i <= itemNumber; i++) {
         quantity.push(i);
       }
+      let disableClick = false;
+      if (quantity.length === 0) disableClick = true;
 
       return (
         <li key={item.id}>
@@ -35,10 +37,12 @@ export default function FormFieldset(props) {
             id={item.id}
             value={item.id}
             onChange={e => inventoryKey(e.target)}
+            {...(disableClick && { disabled: true })}
           />
           <label className="checkbox" htmlFor={item.id}>
             {item.name}
             <img src={item.image} alt={"image of " + item.name} />
+            {disableClick && <div className="disabled"></div>}
           </label>
           <div className="quantity">
             <label className="quantityLabel" htmlFor={"quantity " + item.id}>
