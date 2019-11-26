@@ -34,6 +34,7 @@ label {
   cursor: pointer;
   display: block;
   border: 2pt solid white;
+  padding: 5px;
   text-align: center;
   position: relative;
 }
@@ -47,7 +48,7 @@ input[type="checkbox"]:checked + label {
 }
 
 input[type="checkbox"]:focus + label {
-  outline: white auto 5px;
+  outline: rgb(74, 189, 216, 0.5) auto 5px;
 }
 
 input[type="checkbox"]:checked ~ div {
