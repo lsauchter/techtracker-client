@@ -54,15 +54,6 @@ input[type="checkbox"]:checked ~ div {
   visibility: visible !important;
 }
 
-/* input[type="checkbox"]:disabled + label {
-  border: 2pt solid #ccc;
-  background: #ccc;
-}
-
-input[type="checkbox"]:disabled + label img {
-  opacity: 0.33;
-} */
-
 .disabled {
   position: absolute;
   top: 0;
